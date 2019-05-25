@@ -22,27 +22,30 @@
 * SOFTWARE.
 */
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace AntiDupl.NET
 {
     public class CoreVersion
     {
-        public Int32 major;
-        public Int32 minor;
-        public Int32 release;
-        public Int32 revision;
+        public int major;
+        public int minor;
+        public int release;
+        public int revision;
 
-        public CoreVersion(sbyte[] buffer)
+        public CoreVersion(sbyte[] buffer) : this(Parse(buffer))
         {
-            string[] versions = Parse(buffer).Split('.');
+        }
+
+        public CoreVersion(string version)
+        {
+            var versions = version.Split('.');
             major = versions.Length > 0 ? Convert.ToInt32(versions[0]) : -1;
             minor = versions.Length > 1 ? Convert.ToInt32(versions[1]) : -1;
             release = versions.Length > 2 ? Convert.ToInt32(versions[2]) : -1;
             revision = versions.Length > 3 ? Convert.ToInt32(versions[3]) : -1;
         }
-        
+
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
@@ -54,7 +57,7 @@ namespace AntiDupl.NET
             }
             if (minor >= 0)
             {
-                if(already)
+                if (already)
                     builder.Append(".");
                 builder.Append(minor.ToString());
                 already = true;
@@ -66,7 +69,7 @@ namespace AntiDupl.NET
                 builder.Append(release.ToString());
                 already = true;
             }
-            if(revision >= 0)
+            if (revision >= 0)
             {
                 if (already)
                     builder.Append(".");
@@ -75,15 +78,19 @@ namespace AntiDupl.NET
             return builder.ToString();
         }
 
-        private string Parse(sbyte[] buffer)
+        private static string Parse(sbyte[] buffer)
         {
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < buffer.Length; ++i)
+            var builder = new StringBuilder();
+            for (var i = 0; i < buffer.Length; ++i)
             {
-                if(buffer[i] == 0)
+                if (buffer[i] == 0)
+                {
                     break;
+                }
+
                 builder.Append(Convert.ToChar(buffer[i]));
             }
+
             return builder.ToString();
         }
     }

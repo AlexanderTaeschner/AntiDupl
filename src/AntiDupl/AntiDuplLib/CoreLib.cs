@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
+using AntiDuplLib;
 
 namespace AntiDupl.NET
 {
@@ -49,7 +50,7 @@ namespace AntiDupl.NET
             {
                 throw new Exception("Can't load core library!");
             }
-            if (Version.Compatible(GetVersion(CoreDll.VersionType.AntiDupl)))
+            if (Version.Compatible(GetVersion(VersionType.AntiDupl)))
             {
                 m_handle = m_dll.adCreateW(userPath);
             }
@@ -86,17 +87,28 @@ namespace AntiDupl.NET
             GC.SuppressFinalize(this);
         }
 
-        public CoreVersion GetVersion(CoreDll.VersionType versionType)
+        public CoreVersion GetVersion(VersionType versionType)
         {
-            sbyte[] version = new sbyte[VERSION_SIZE];
-            IntPtr[] pVersionSize = new IntPtr[1];
-            pVersionSize[0] = new IntPtr(VERSION_SIZE);
-            if (m_dll.adVersionGet(versionType, Marshal.UnsafeAddrOfPinnedArrayElement(version, 0), 
-                Marshal.UnsafeAddrOfPinnedArrayElement(pVersionSize, 0)) == CoreDll.Error.Ok)
+            switch (versionType)
             {
-                return new CoreVersion(version);
+                case VersionType.AntiDupl:
+                    return new CoreVersion(External.Version);
+                case VersionType.OpenJpeg:
+                    var version = OpenJpeg.Version();
+                    return new CoreVersion(version);
+                case VersionType.Simd:
+                    sbyte[] buffer = new sbyte[VERSION_SIZE];
+                    IntPtr[] pVersionSize = new IntPtr[1];
+                    pVersionSize[0] = new IntPtr(VERSION_SIZE);
+                    if (m_dll.adVersionGet(versionType, Marshal.UnsafeAddrOfPinnedArrayElement(buffer, 0),
+                        Marshal.UnsafeAddrOfPinnedArrayElement(pVersionSize, 0)) == CoreDll.Error.Ok)
+                    {
+                        return new CoreVersion(buffer);
+                    }
+                    return null;
+                default:
+                    throw new NotSupportedException();
             }
-            return null; 
         }
 
         public bool IsInited()
@@ -163,7 +175,7 @@ namespace AntiDupl.NET
                 CoreDll.adStatusW statusW = (CoreDll.adStatusW)Marshal.PtrToStructure(pStatus, statusObject.GetType());
                 try
                 {
-                    return new CoreStatus(ref statusW);                
+                    return new CoreStatus(ref statusW);
                 }
                 catch (Exception)
                 {
@@ -193,7 +205,7 @@ namespace AntiDupl.NET
             int[] enable = new int[1];
             if (m_dll.adCanApply(m_handle, actionEnableType, Marshal.UnsafeAddrOfPinnedArrayElement(enable, 0)) != CoreDll.Error.Ok)
                 return false;
-            return enable[0] != CoreDll.FALSE; 
+            return enable[0] != CoreDll.FALSE;
         }
 
         public bool RenameCurrent(CoreDll.RenameCurrentType renameCurrentType, string newFileName)
@@ -231,12 +243,12 @@ namespace AntiDupl.NET
                     pSize[0] = new UIntPtr(PAGE_SIZE);
 
                     if (m_dll.adResultGetW(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(pStartFrom, 0),
-                        Marshal.UnsafeAddrOfPinnedArrayElement(buffer, 0), 
+                        Marshal.UnsafeAddrOfPinnedArrayElement(buffer, 0),
                         Marshal.UnsafeAddrOfPinnedArrayElement(pSize, 0)) == CoreDll.Error.Ok)
                     {
                         for (uint i = 0; i < pSize[0].ToUInt32(); ++i)
                         {
-                            IntPtr pResult = Marshal.UnsafeAddrOfPinnedArrayElement(buffer, (int)(i*sizeOfResult));
+                            IntPtr pResult = Marshal.UnsafeAddrOfPinnedArrayElement(buffer, (int)(i * sizeOfResult));
                             CoreDll.adResultW result = (CoreDll.adResultW)Marshal.PtrToStructure(pResult, resultObject.GetType());
                             results[page * PAGE_SIZE + i] = new CoreResult(ref result);
                         }
@@ -264,7 +276,7 @@ namespace AntiDupl.NET
         {
             UIntPtr[] pStartFrom = new UIntPtr[1];
             pStartFrom[0] = new UIntPtr(startFrom);
-            return m_dll.adSelectionSet(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(pStartFrom, 0), new UIntPtr(size), 
+            return m_dll.adSelectionSet(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(pStartFrom, 0), new UIntPtr(size),
                 value ? CoreDll.TRUE : CoreDll.FALSE) == CoreDll.Error.Ok;
         }
 
@@ -275,7 +287,7 @@ namespace AntiDupl.NET
             pStartFrom[0] = new UIntPtr(startFrom);
             UIntPtr[] pSelectionSize = new UIntPtr[1];
             pSelectionSize[0] = new UIntPtr(size);
-            if (m_dll.adSelectionGet(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(pStartFrom, 0), 
+            if (m_dll.adSelectionGet(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(pStartFrom, 0),
                 Marshal.UnsafeAddrOfPinnedArrayElement(pSelection, 0),
                 Marshal.UnsafeAddrOfPinnedArrayElement(pSelectionSize, 0)) == CoreDll.Error.Ok)
             {
@@ -309,7 +321,7 @@ namespace AntiDupl.NET
             if (groupSize > startFrom)
             {
                 object groupObject = new CoreDll.adGroup();
-                int sizeOfGroup= Marshal.SizeOf(groupObject);
+                int sizeOfGroup = Marshal.SizeOf(groupObject);
                 size = Math.Min(groupSize - startFrom, size);
                 byte[] buffer = new byte[sizeOfGroup * size];
                 CoreGroup[] groups = new CoreGroup[size];
@@ -585,7 +597,7 @@ namespace AntiDupl.NET
                 SetPath(CoreDll.PathType.Ignore, value);
             }
         }
-        
+
         public CorePathWithSubFolder[] validPath
         {
             get
@@ -663,9 +675,9 @@ namespace AntiDupl.NET
                 path[i].path.CopyTo(0, buffer, i * (CoreDll.MAX_PATH_EX + 1), path[i].path.Length);
                 buffer[(CoreDll.MAX_PATH_EX + 1) * i + CoreDll.MAX_PATH_EX] = path[i].enableSubFolder ? (char)1 : (char)0;
             }
-            
-            return m_dll.adPathWithSubFolderSetW(m_handle, 
-                pathType, 
+
+            return m_dll.adPathWithSubFolderSetW(m_handle,
+                pathType,
                 Marshal.UnsafeAddrOfPinnedArrayElement(buffer, 0),
                 new IntPtr(path.Length)) == CoreDll.Error.Ok;
         }

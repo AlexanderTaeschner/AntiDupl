@@ -113,13 +113,13 @@ namespace AntiDupl.NET
                 new Font(font, FontStyle.Bold)), 1, 0);
 
             table.Controls.Add(CreateLinkLabel(Application.ProductName, Resources.WebLinks.GithubComAntidupl, font), 0, 1);
-            table.Controls.Add(CreateLabel(m_core.GetVersion(CoreDll.VersionType.AntiDupl).ToString(), font), 1, 1);
+            table.Controls.Add(CreateLabel(m_core.GetVersion(VersionType.AntiDupl).ToString(), font), 1, 1);
 
             table.Controls.Add(CreateLinkLabel("Simd", Resources.WebLinks.GithubComSimd, font), 0, 2);
-            table.Controls.Add(CreateLabel(m_core.GetVersion(CoreDll.VersionType.Simd).ToString(), font), 1, 2);
+            table.Controls.Add(CreateLabel(m_core.GetVersion(VersionType.Simd).ToString(), font), 1, 2);
 
             table.Controls.Add(CreateLinkLabel("OpenJPEG", Resources.WebLinks.OpenjpegOrg, font), 0, 3);
-            table.Controls.Add(CreateLabel(m_core.GetVersion(CoreDll.VersionType.OpenJpeg).ToString(), font), 1, 3);
+            table.Controls.Add(CreateLabel(m_core.GetVersion(VersionType.OpenJpeg).ToString(), font), 1, 3);
 
             return table;
         }

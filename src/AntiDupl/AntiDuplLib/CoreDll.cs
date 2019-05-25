@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 
 namespace AntiDupl.NET
 {
-    public class CoreDll : DynamicModule
+    public partial class CoreDll : DynamicModule
     {
         public CoreDll()
             : base(IntPtr.Size == 8 ? "AntiDupl64.dll" : "AntiDupl32.dll")
@@ -278,13 +278,6 @@ namespace AntiDupl.NET
             Main = 0,
             Collect = 1,
             Compare = 2,
-        }
-
-        public enum VersionType : int
-        {
-            AntiDupl = 0,
-            Simd = 1,
-            OpenJpeg = 2,
         }
 
         public enum SelectionType : int
