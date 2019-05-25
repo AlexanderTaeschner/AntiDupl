@@ -56,7 +56,6 @@ namespace ad
 
         TImageInfo& operator = (const TImageInfo& imageInfo);
 
-        bool Export(adImageInfoPtrA pImageInfo) const;
         bool Export(adImageInfoPtrW pImageInfo) const;
 
 		TUInt32 Area() const {return width*height;}

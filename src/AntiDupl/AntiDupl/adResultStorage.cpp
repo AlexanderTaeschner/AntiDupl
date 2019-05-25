@@ -264,11 +264,6 @@ namespace ad
         return m_pUndoRedoEngine->Current()->GetSelection(pStartFrom, pSelection, pSelectionSize);
     }
 
-    adError TResultStorage::Export(adSizePtr pStartFrom, adResultPtrA pResult, adSizePtr pResultSize) const
-    {
-        return m_pUndoRedoEngine->Current()->Export(pStartFrom, pResult, pResultSize);
-    }
-
     adError TResultStorage::Export(adSizePtr pStartFrom, adResultPtrW pResult, adSizePtr pResultSize) const
     {
         return m_pUndoRedoEngine->Current()->Export(pStartFrom, pResult, pResultSize);
@@ -277,11 +272,6 @@ namespace ad
 	adError TResultStorage::Export(adSizePtr pStartFrom, adGroupPtr pGroup, adSizePtr pGroupSize) const
 	{
 		return m_pUndoRedoEngine->Current()->groups.Export(pStartFrom, pGroup, pGroupSize);
-	}
-
-	adError TResultStorage::Export(adSize groupId, adSizePtr pStartFrom, adImageInfoPtrA pImageInfo, adSizePtr pImageInfoSize) const
-	{
-		return m_pUndoRedoEngine->Current()->groups.Export(groupId, pStartFrom, pImageInfo, pImageInfoSize);
 	}
 
 	// Вызывается при запросе информации о размерах групп.

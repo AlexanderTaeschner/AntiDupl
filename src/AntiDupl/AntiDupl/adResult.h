@@ -54,7 +54,6 @@ namespace ad
         static bool ImageInfoLesser(TImageInfoPtr pFirst, TImageInfoPtr pSecond, TSortType sortType, bool increasing);
         void Swap();
 
-        bool Export(adResultPtrA pResult) const;
         bool Export(adResultPtrW pResult) const;
     };
     typedef TResult* TResultPtr;

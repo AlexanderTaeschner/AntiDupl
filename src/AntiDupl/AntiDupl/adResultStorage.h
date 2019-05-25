@@ -80,11 +80,9 @@ namespace ad
         adError SetSelection(adSizePtr pStartFrom, adSize size, adBool value);
         adError GetSelection(adSizePtr pStartFrom, adBoolPtr pSelection, adSizePtr pSelectionSize);
 
-        adError Export(adSizePtr pStartFrom, adResultPtrA pResult, adSizePtr pResultSize) const;
         adError Export(adSizePtr pStartFrom, adResultPtrW pResult, adSizePtr pResultSize) const;
 
 		adError Export(adSizePtr pStartFrom, adGroupPtr pGroup, adSizePtr pGroupSize) const;
-		adError Export(adSize groupId, adSizePtr pStartFrom, adImageInfoPtrA pImageInfo, adSizePtr pImageInfoSize) const;
 		adError Export(adSize groupId, adSizePtr pStartFrom, adImageInfoPtrW pImageInfo, adSizePtr pImageInfoSize) const;
 
 		adError SetSelection(adSize groupId, adSize index, adSelectionType selectionType);

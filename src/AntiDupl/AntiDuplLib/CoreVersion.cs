@@ -28,67 +28,59 @@ namespace AntiDupl.NET
 {
     public class CoreVersion
     {
-        public int major;
-        public int minor;
-        public int release;
-        public int revision;
+        public int Major { get; }
+        public int Minor { get; }
+        public int Release { get; }
+        public int Revision { get; }
 
-        public CoreVersion(sbyte[] buffer) : this(Parse(buffer))
-        {
-        }
-
-        public CoreVersion(string version)
+        internal CoreVersion(string version)
         {
             var versions = version.Split('.');
-            major = versions.Length > 0 ? Convert.ToInt32(versions[0]) : -1;
-            minor = versions.Length > 1 ? Convert.ToInt32(versions[1]) : -1;
-            release = versions.Length > 2 ? Convert.ToInt32(versions[2]) : -1;
-            revision = versions.Length > 3 ? Convert.ToInt32(versions[3]) : -1;
+            Major = versions.Length > 0 ? Convert.ToInt32(versions[0]) : -1;
+            Minor = versions.Length > 1 ? Convert.ToInt32(versions[1]) : -1;
+            Release = versions.Length > 2 ? Convert.ToInt32(versions[2]) : -1;
+            Revision = versions.Length > 3 ? Convert.ToInt32(versions[3]) : -1;
         }
+
+        private CoreVersion() => throw new NotSupportedException();
 
         public override string ToString()
         {
-            StringBuilder builder = new StringBuilder();
-            bool already = false;
-            if (major >= 0)
-            {
-                builder.Append(major.ToString());
-                already = true;
-            }
-            if (minor >= 0)
-            {
-                if (already)
-                    builder.Append(".");
-                builder.Append(minor.ToString());
-                already = true;
-            }
-            if (release >= 0)
-            {
-                if (already)
-                    builder.Append(".");
-                builder.Append(release.ToString());
-                already = true;
-            }
-            if (revision >= 0)
-            {
-                if (already)
-                    builder.Append(".");
-                builder.Append(revision.ToString());
-            }
-            return builder.ToString();
-        }
-
-        private static string Parse(sbyte[] buffer)
-        {
             var builder = new StringBuilder();
-            for (var i = 0; i < buffer.Length; ++i)
+            var already = false;
+            if (Major >= 0)
             {
-                if (buffer[i] == 0)
+                builder.Append(Major.ToString());
+                already = true;
+            }
+            if (Minor >= 0)
+            {
+                if (already)
                 {
-                    break;
+                    builder.Append(".");
                 }
 
-                builder.Append(Convert.ToChar(buffer[i]));
+                builder.Append(Minor.ToString());
+                already = true;
+            }
+            if (Release >= 0)
+            {
+                if (already)
+                {
+                    builder.Append(".");
+                }
+
+                builder.Append(Release.ToString());
+                already = true;
+            }
+            if (Revision >= 0)
+            {
+                if (already)
+                {
+                    builder.Append(".");
+                }
+
+                builder.Append(Revision.ToString());
             }
 
             return builder.ToString();

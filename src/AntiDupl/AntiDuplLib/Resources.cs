@@ -46,7 +46,10 @@ namespace AntiDupl.NET
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
             if (!directoryInfo.Exists)
+            {
                 directoryInfo.Create();
+            }
+
             return path;
         }
 
@@ -83,9 +86,13 @@ namespace AntiDupl.NET
                     {
                         int yy = y - height / 2;
                         if (xx * xx + yy * yy < radius * radius)
+                        {
                             bitmap.SetPixel(x, y, Color.FromArgb(0xFF, 0, 0, 0));
+                        }
                         else
+                        {
                             bitmap.SetPixel(x, y, Color.FromArgb(0, 0, 0, 0));
+                        }
                     }
                 }
                 return bitmap;
@@ -208,7 +215,9 @@ namespace AntiDupl.NET
                     }
                 }
                 else
+                {
                     return null;
+                }
             }
 
             static private void Save(AntiDupl.NET.Strings strings)
@@ -253,18 +262,26 @@ namespace AntiDupl.NET
                 get 
                 {
                     if (m_currentIndex < Count && m_currentIndex >= 0)
+                    {
                         return (AntiDupl.NET.Strings)m_strings[m_currentIndex];
+                    }
                     else
-                        return null; 
+                    {
+                        return null;
+                    }
                 }
             }
             
             public static AntiDupl.NET.Strings Get(int index)
             {
                 if (index < Count && index >= 0)
+                {
                     return (AntiDupl.NET.Strings)m_strings[index];
+                }
                 else
+                {
                     return null;
+                }
             }
 
             public static bool SetCurrent(int index)
@@ -273,11 +290,16 @@ namespace AntiDupl.NET
                 {
                     m_currentIndex = index;
                     if (OnCurrentChange != null)
+                    {
                         OnCurrentChange();
+                    }
+
                     return true;
                 }
                 else
+                {
                     return false;
+                }
             }
             
             public static bool SetCurrent(string name)
@@ -322,7 +344,9 @@ namespace AntiDupl.NET
             public static void Update()
             {
                 if (OnCurrentChange != null)
+                {
                     OnCurrentChange();
+                }
             }
         }
 
@@ -342,9 +366,13 @@ namespace AntiDupl.NET
                 get
                 {
                     if (Strings.IsCurrentRussianFamily())
+                    {
                         return GithubComAntiduplRussian;
+                    }
                     else
+                    {
                         return GithubComAntiduplEnglish;
+                    }
                 }
             }
         }
@@ -356,9 +384,14 @@ namespace AntiDupl.NET
                 StringBuilder builder = new StringBuilder(WebLinks.GithubComAntidupl);
                 builder.Append("/data/help");
                 if (Strings.IsCurrentRussianFamily())
+                {
                     builder.Append("/russian");
+                }
                 else
+                {
                     builder.Append("/english");
+                }
+
                 builder.Append("/index.html");
                 if(page != null)
                 {

@@ -181,10 +181,8 @@ namespace ad
         void Load(const TChar *fileName);
         bool Save(const TChar *fileName) const;
 
-        adError Import(adPathPtrA pPath, adSize pathCount);
         adError Import(adPathPtrW pPath, adSize pathCount);
 		adError Import(adPathWSFPtr pPath, adSize pathCount);
-        adError Export(adPathPtrA pPath, adSizePtr pPathCount) const;
         adError Export(adPathPtrW pPath, adSizePtr pPathCount) const;
 
         size_t IsHasPath(const TPath& path) const;

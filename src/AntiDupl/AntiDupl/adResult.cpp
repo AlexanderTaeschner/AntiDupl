@@ -156,26 +156,6 @@ namespace ad
         }
     }
 
-    bool TResult::Export(adResultPtrA pResult) const
-    {
-        if(pResult == NULL)
-            return false;
-
-        bool result = true;
-
-        pResult->type = type;
-        result = result && first->Export(&(pResult->first));
-        result = result && second->Export(&(pResult->second));
-        pResult->defect = defect;
-        pResult->difference = difference;
-        pResult->transform = transform;
-		pResult->group = group;
-		pResult->groupSize = groupSize;
-        pResult->hint = hint;
-
-        return result;
-    }
-
     bool TResult::Export(adResultPtrW pResult) const
     {
         if(pResult == NULL)

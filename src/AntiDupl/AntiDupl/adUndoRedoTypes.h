@@ -80,7 +80,6 @@ namespace ad
         adError SetSelection(adSizePtr pStartFrom, adSize size, adBool value);
         adError GetSelection(adSizePtr pStartFrom, adBoolPtr pSelection, adSizePtr pSelectionSize);
 
-        adError Export(adSizePtr pStartFrom, adResultPtrA pResult, adSizePtr pResultSize) const;
         adError Export(adSizePtr pStartFrom, adResultPtrW pResult, adSizePtr pResultSize) const;
 
         void RemoveInvalid(TStatus *pStatus, TMistakeStorage *pMistakeStorage);

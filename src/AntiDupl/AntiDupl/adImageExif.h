@@ -54,7 +54,6 @@ namespace ad
 		TString userComment;
 		
 		TImageExif();
-		bool Export(adExifInfoA *) const;
 		bool Export(adExifInfoW *) const;
 		TImageExif& TImageExif::operator = (const TImageExif& exifInfo);
 	};

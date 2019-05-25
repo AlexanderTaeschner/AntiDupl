@@ -55,7 +55,9 @@ namespace AntiDupl.NET
                 m_handle = m_dll.adCreateW(userPath);
             }
             else
+            {
                 throw new Exception("Incompatible core library version!");
+            }
         }
 
         ~CoreLib()
@@ -89,40 +91,23 @@ namespace AntiDupl.NET
 
         public CoreVersion GetVersion(VersionType versionType)
         {
+            string version;
             switch (versionType)
             {
                 case VersionType.AntiDupl:
-                    return new CoreVersion(External.Version);
+                    version = External.Version;
+                    break;
                 case VersionType.OpenJpeg:
-                    var version = OpenJpeg.Version();
-                    return new CoreVersion(version);
+                    version = OpenJpeg.Version();
+                    break;
                 case VersionType.Simd:
-                    sbyte[] buffer = new sbyte[VERSION_SIZE];
-                    IntPtr[] pVersionSize = new IntPtr[1];
-                    pVersionSize[0] = new IntPtr(VERSION_SIZE);
-                    if (m_dll.adVersionGet(versionType, Marshal.UnsafeAddrOfPinnedArrayElement(buffer, 0),
-                        Marshal.UnsafeAddrOfPinnedArrayElement(pVersionSize, 0)) == CoreDll.Error.Ok)
-                    {
-                        return new CoreVersion(buffer);
-                    }
-                    return null;
+                    version = Simd.Version();
+                    break;
                 default:
                     throw new NotSupportedException();
             }
-        }
 
-        public bool IsInited()
-        {
-            return m_handle != IntPtr.Zero;
-        }
-
-        public bool IsWork()
-        {
-            CoreStatus status = StatusGet(CoreDll.ThreadType.Main, 0);
-            if (status != null)
-                return status.state != CoreDll.StateType.None;
-            else
-                return false;
+            return new CoreVersion(version);
         }
 
         public bool Stop()
@@ -153,16 +138,6 @@ namespace AntiDupl.NET
         public bool SetDefaultOptions()
         {
             return m_dll.adOptionsSet(m_handle, CoreDll.OptionsType.SetDefault, IntPtr.Zero) == CoreDll.Error.Ok;
-        }
-
-        public CoreStatistic GetStatistic()
-        {
-            CoreDll.adStatistic[] statistic = new CoreDll.adStatistic[1];
-            if (m_dll.adStatisticGet(m_handle, Marshal.UnsafeAddrOfPinnedArrayElement(statistic, 0)) == CoreDll.Error.Ok)
-            {
-                return new CoreStatistic(ref statistic[0]);
-            }
-            return null;
         }
 
         public CoreStatus StatusGet(CoreDll.ThreadType threadType, int threadId)
@@ -204,7 +179,10 @@ namespace AntiDupl.NET
         {
             int[] enable = new int[1];
             if (m_dll.adCanApply(m_handle, actionEnableType, Marshal.UnsafeAddrOfPinnedArrayElement(enable, 0)) != CoreDll.Error.Ok)
+            {
                 return false;
+            }
+
             return enable[0] != CoreDll.FALSE;
         }
 
@@ -293,7 +271,10 @@ namespace AntiDupl.NET
             {
                 bool[] selection = new bool[pSelectionSize[0].ToUInt32()];
                 for (int i = 0; i < selection.Length; ++i)
+                {
                     selection[i] = pSelection[i] != CoreDll.FALSE;
+                }
+
                 return selection;
             }
             return null;
@@ -440,7 +421,10 @@ namespace AntiDupl.NET
             {
                 bool[] selection = new bool[pSelectionSize[0].ToUInt32()];
                 for (int i = 0; i < selection.Length; ++i)
+                {
                     selection[i] = pSelection[i] != CoreDll.FALSE;
+                }
+
                 return selection;
             }
             return null;
@@ -454,7 +438,9 @@ namespace AntiDupl.NET
         public System.Drawing.Bitmap LoadBitmap(int width, int height, string path)
         {
             if (height * width == 0)
+            {
                 return null;
+            }
 
             System.Drawing.Bitmap bitmap = null;
             try
@@ -505,10 +491,6 @@ namespace AntiDupl.NET
         {
             return LoadBitmap((int)imageInfo.width, (int)imageInfo.height, imageInfo.path);
         }
-
-        //-----------Public properties----------------------------------------------
-
-        #region Public properties
 
         public CoreSearchOptions searchOptions
         {
@@ -622,20 +604,20 @@ namespace AntiDupl.NET
             }
         }
 
-        #endregion
-
-        //-----------Private functions:--------------------------------------------
-        #region private
-
         static private string BufferToString(char[] buffer, int startIndex, int maxSize)
         {
             if (startIndex >= buffer.Length)
+            {
                 return null;
+            }
+
             int i = 0, n = Math.Min(maxSize, buffer.Length - startIndex);
             for (; i < n; ++i)
             {
                 if (buffer[startIndex + i] == (char)0)
+                {
                     break;
+                }
             }
             return new string(buffer, startIndex, i);
         }
@@ -658,9 +640,13 @@ namespace AntiDupl.NET
                         pathWSF[i] = new CorePathWithSubFolder();
                         pathWSF[i].path = BufferToString(buffer, i * (CoreDll.MAX_PATH_EX + 1), CoreDll.MAX_PATH_EX);
                         if (buffer[(CoreDll.MAX_PATH_EX + 1) * i + CoreDll.MAX_PATH_EX] == (char)1)
+                        {
                             pathWSF[i].enableSubFolder = true;
+                        }
                         else
+                        {
                             pathWSF[i].enableSubFolder = false;
+                        }
                     }
                 }
             }
@@ -681,7 +667,5 @@ namespace AntiDupl.NET
                 Marshal.UnsafeAddrOfPinnedArrayElement(buffer, 0),
                 new IntPtr(path.Length)) == CoreDll.Error.Ok;
         }
-
-        #endregion
     };
 }

@@ -77,7 +77,6 @@ namespace ad
 		void UpdateHints(TOptions *pOptions, bool force, TStatus *pStatus);
 
 		adError Export(adSizePtr pStartFrom, adGroupPtr pGroup, adSizePtr pGroupSize) const;
-		adError Export(adSize groupId, adSizePtr pStartFrom, adImageInfoPtrA pImageInfo, adSizePtr pImageInfoSize) const;
 		adError Export(adSize groupId, adSizePtr pStartFrom, adImageInfoPtrW pImageInfo, adSizePtr pImageInfoSize) const;
 
 		adError SetSelection(adSize groupId, adSize index, adSelectionType selectionType);

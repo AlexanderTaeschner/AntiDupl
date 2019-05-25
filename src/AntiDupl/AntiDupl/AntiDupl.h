@@ -90,12 +90,9 @@ extern "C"
 #endif//__AD_HANDLE__
 
     typedef wchar_t adCharW;
-    typedef char adCharA;
     typedef adCharW adPathW[MAX_PATH_EX];
 	typedef adCharW adPathWSF[MAX_PATH_EX + 1]; // 1 - для хранения bool subfolder
-    typedef adCharA adPathA[MAX_PATH];
     typedef adPathW* adPathPtrW;
-    typedef adPathA* adPathPtrA;
 	typedef adPathWSF* adPathWSFPtr;
 
     /*------------Enumerations-----------------------------------------------*/
@@ -459,15 +456,6 @@ extern "C"
     };
     typedef adStatistic* adStatisticPtr;
 
-    struct adStatusA
-    {
-        adStateType state;
-        adPathA path;
-        adSize current;
-        adSize total;
-    };
-    typedef adStatusA* adStatusPtrA;
-
     struct adStatusW
     {
         adStateType state;
@@ -480,17 +468,6 @@ extern "C"
 	#ifndef MAX_EXIF_SIZE
 	#define MAX_EXIF_SIZE 260
 	#endif
-	struct adExifInfoA
-	{
-		adBool isEmpty;
-		adCharA imageDescription[MAX_EXIF_SIZE];
-		adCharA equipMake[MAX_EXIF_SIZE];
-		adCharA equipModel[MAX_EXIF_SIZE];
-		adCharA softwareUsed[MAX_EXIF_SIZE];
-		adCharA dateTime[MAX_EXIF_SIZE];
-		adCharA artist[MAX_EXIF_SIZE];
-		adCharA userComment[MAX_EXIF_SIZE];
-	};
 
 	struct adExifInfoW
 	{
@@ -503,21 +480,6 @@ extern "C"
 		adCharW artist[MAX_EXIF_SIZE];
 		adCharW userComment[MAX_EXIF_SIZE];
 	};
-
-    struct adImageInfoA
-    {
-        adSize id;
-        adPathA path;
-        adUInt64 size;
-        adUInt64 time;
-        adImageType type;
-        adUInt32 width;
-        adUInt32 height;
-		double blockiness;
-		double blurring;
-		adExifInfoA exifInfo;
-    };
-    typedef adImageInfoA* adImageInfoPtrA;
 
 	// Структура для взаимодействия dll, передает нужные параметры из структуры TImageInfo
     struct adImageInfoW
@@ -534,20 +496,6 @@ extern "C"
 		adExifInfoW exifInfo;
    };
     typedef adImageInfoW* adImageInfoPtrW;
-
-    struct adResultA
-    {
-        adResultType type;
-        adImageInfoA first;
-        adImageInfoA second;
-        adDefectType defect;
-        double difference;
-        adTransformType transform;
-        adSize group;
-		adSize groupSize;
-        adHintType hint;
-    };
-    typedef adResultA* adResultPtrA;
 
     struct adResultW
     {
@@ -582,18 +530,13 @@ extern "C"
 
     /*------------Functions-------------------------------------------------------*/
 
-    DLLAPI adError adVersionGet(adVersionType versionType, adCharA * pVersion, adSizePtr pVersionSize);
-
-    DLLAPI adEngineHandle adCreateA(const adCharA * userPath);
     DLLAPI adEngineHandle adCreateW(const adCharW * userPath);
     DLLAPI adError adRelease(adEngineHandle handle);
 
 	DLLAPI adError adStop(adEngineHandle handle);
     DLLAPI adError adSearch(adEngineHandle handle);
 
-    DLLAPI adError adLoadA(adEngineHandle handle, adFileType fileType, const adCharA* fileName, adBool check);
     DLLAPI adError adLoadW(adEngineHandle handle, adFileType fileType, const adCharW* fileName, adBool check);
-    DLLAPI adError adSaveA(adEngineHandle handle, adFileType fileType, const adCharA* fileName);
     DLLAPI adError adSaveW(adEngineHandle handle, adFileType fileType, const adCharW* fileName);
     DLLAPI adError adClear(adEngineHandle handle, adFileType fileType);
 
@@ -602,23 +545,16 @@ extern "C"
 
 	DLLAPI adError adPathWithSubFolderSetW(adEngineHandle handle, adPathType pathType, adPathWSFPtr pPaths, adSize pathSize);
 
-    DLLAPI adError adPathGetA(adEngineHandle handle, adPathType pathType, adPathPtrA pPath, adSizePtr pPathSize);
     DLLAPI adError adPathGetW(adEngineHandle handle, adPathType pathType, adPathPtrW pPath, adSizePtr pPathSize);
-    DLLAPI adError adPathSetA(adEngineHandle handle, adPathType pathType, adPathPtrA pPath, adSize pathSize);
-    DLLAPI adError adPathSetW(adEngineHandle handle, adPathType pathType, adPathPtrW pPath, adSize pathSize);
 
-    DLLAPI adError adStatisticGet(adEngineHandle handle, adStatisticPtr pStatistic);
-    DLLAPI adError adStatusGetA(adEngineHandle handle, adThreadType threadType, adSize threadId, adStatusPtrA pStatus);
     DLLAPI adError adStatusGetW(adEngineHandle handle, adThreadType threadType, adSize threadId, adStatusPtrW pStatus);
 
-    DLLAPI adError adResultGetA(adEngineHandle handle, adSizePtr pStartFrom, adResultPtrA pResult, adSizePtr pResultSize);
     DLLAPI adError adResultGetW(adEngineHandle handle, adSizePtr pStartFrom, adResultPtrW pResult, adSizePtr pResultSize);
     DLLAPI adError adResultSort(adEngineHandle handle, adSortType sortType, adBool increasing);
     DLLAPI adError adResultApply(adEngineHandle handle, adGlobalActionType globalActionType);
     DLLAPI adError adResultApplyTo(adEngineHandle handle, adLocalActionType localActionType, adTargetType targetType);
     DLLAPI adError adCanApply(adEngineHandle handle, adActionEnableType actionEnableType, adBoolPtr pEnable);
 
-    DLLAPI adError adRenameCurrentA(adEngineHandle handle, adRenameCurrentType renameCurrentType, const adCharA* newFileName);
     DLLAPI adError adRenameCurrentW(adEngineHandle handle, adRenameCurrentType renameCurrentType, const adCharW* newFileName);
 	DLLAPI adError adMoveCurrentGroupW(adEngineHandle handle, const adCharW* directory);
 	DLLAPI adError adRenameCurrentGroupAsW(adEngineHandle handle, const adCharW* fileName);
@@ -629,14 +565,11 @@ extern "C"
     DLLAPI adError adCurrentGet(adEngineHandle handle, adSizePtr pIndex);
 
 	DLLAPI adError adGroupGet(adEngineHandle handle, adSizePtr pStartFrom, adGroupPtr pGroup, adSizePtr pGroupSize);
-	DLLAPI adError adImageInfoGetA(adEngineHandle handle, adSize groupId, adSizePtr pStartFrom, adImageInfoPtrA pImageInfo, adSizePtr pImageInfoSize);
 	DLLAPI adError adImageInfoGetW(adEngineHandle handle, adSize groupId, adSizePtr pStartFrom, adImageInfoPtrW pImageInfo, adSizePtr pImageInfoSize);
 	DLLAPI adError adImageInfoSelectionSet(adEngineHandle handle, adSize groupId, adSize index, adSelectionType selectionType);
 	DLLAPI adError adImageInfoSelectionGet(adEngineHandle handle, adSize groupId, adSizePtr pStartFrom, adBoolPtr pSelection, adSizePtr pSelectionSize);
-	DLLAPI adError adImageInfoRenameA(adEngineHandle handle, adSize groupId, adSize index, const adCharA* newFileName);
 	DLLAPI adError adImageInfoRenameW(adEngineHandle handle, adSize groupId, adSize index, const adCharW* newFileName);
 
-    DLLAPI adError adLoadBitmapA(adEngineHandle handle, const adCharA* fileName, adBitmapPtr pBitmap);
     DLLAPI adError adLoadBitmapW(adEngineHandle handle, const adCharW* fileName, adBitmapPtr pBitmap);
 
     /*------------Unicode/Ansi defines-------------------------------------------*/

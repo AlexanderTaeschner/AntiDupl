@@ -238,29 +238,6 @@ namespace ad
         return result;
     }
 
-    adError TPathContainer::Import(adPathPtrA pPath, adSize pathCount)
-    {
-        if(pathCount == 0)
-        {
-            m_paths.clear();
-            if(m_defaultPathEnabled)
-                m_paths.push_back(GetApplicationDirectory());
-            return AD_OK;
-        }
-        else
-        {
-            if(pPath == NULL)
-                return AD_ERROR_INVALID_POINTER;
-
-            TPathVector tmp(pathCount);
-            for(size_t i = 0; i < pathCount; i++)
-                tmp[i] = pPath[i];
-            Set(tmp);
-
-            return AD_OK;
-        }
-    }
-
 	adError TPathContainer::Import(adPathPtrW pPath, adSize pathCount)
     {
         if(pathCount == 0)
@@ -318,31 +295,6 @@ namespace ad
 
             return AD_OK;
         }
-    }
-
-    adError TPathContainer::Export(adPathPtrA pPath, adSizePtr pPathCount) const
-    {
-        if(pPath == NULL || pPathCount == NULL)
-            return AD_ERROR_INVALID_POINTER;
-        if(m_paths.size() > *pPathCount)
-        {
-            *pPathCount = m_paths.size();
-            return AD_ERROR_OUTPUT_BUFFER_IS_TOO_SMALL;
-        }
-
-        adCharA *p = (adCharA*)pPath;
-        for(size_t i = 0; i < m_paths.size(); i++)
-        {
-            const TString &path = m_paths[i].Original();
-            if(path.length() < MAX_PATH)
-                path.CopyTo(p, MAX_PATH);
-            else
-                return AD_ERROR_PATH_TO_LONG;
-            p += MAX_PATH;
-        }
-        *pPathCount = m_paths.size();
-
-        return AD_OK;
     }
 
     adError TPathContainer::Export(adPathPtrW pPath, adSizePtr pPathCount) const

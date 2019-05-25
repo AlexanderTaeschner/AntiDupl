@@ -34,15 +34,6 @@ namespace ad
 	{
 	}
 
-	// Экспортируем в структуры для передачи из dll
-	bool TImageExif::Export(adExifInfoA * pExifInfo) const
-    {
-        if(pExifInfo == NULL)
-            return false;
-
-		return equipMake.CopyTo(pExifInfo->equipMake, MAX_EXIF_SIZE);
-    }
-
 	bool TImageExif::Export(adExifInfoW * pExifInfo) const
     {
         if(pExifInfo == NULL)

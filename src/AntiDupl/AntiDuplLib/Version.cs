@@ -91,19 +91,23 @@ namespace AntiDupl.NET
                     return v1.release - v2.release;
                 }
                 else
+                {
                     return v1.minor - v2.minor;
+                }
             }
             else
+            {
                 return v1.major - v2.major;
+            }
         }
 
         static public bool Compatible(CoreVersion coreVersion)
         {
             Version version = new Version();
             return
-                version.major == coreVersion.major &&
-                version.minor == coreVersion.minor &&
-                version.release == coreVersion.release;
+                version.major == coreVersion.Major &&
+                version.minor == coreVersion.Minor &&
+                version.release == coreVersion.Release;
         }
     }
 }

@@ -35,7 +35,6 @@ namespace ad
     public:
         TThreadStatus();
 
-        adError Export(adStatusPtrA pStatus) const;
         adError Export(adStatusPtrW pStatus) const;
 
         size_t ProcessedCount() const {return m_processedCount;};
@@ -64,7 +63,6 @@ namespace ad
         TStateType State() const {return m_state;};
 
         adError Export(adStatisticPtr pStatistic) const;
-        adError Export(adThreadType threadType, adSize threadId, adStatusPtrA pStatus) const;
         adError Export(adThreadType threadType, adSize threadId, adStatusPtrW pStatus) const;
 
         void ClearStatistic();

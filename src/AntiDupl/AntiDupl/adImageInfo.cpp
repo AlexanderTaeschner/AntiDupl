@@ -65,26 +65,6 @@ namespace ad
         return *this;
     }
 
-	// Экспортируем информацию об изображение в переданный указатель.
-    bool TImageInfo::Export(adImageInfoPtrA pImageInfo) const
-    {
-        if(pImageInfo == NULL)
-            return false;
-
-        pImageInfo->id = (size_t)this;
-        path.Original().CopyTo(pImageInfo->path, MAX_PATH);
-        pImageInfo->size = size;
-        pImageInfo->time = time;
-        pImageInfo->type = type;
-        pImageInfo->width = width;
-        pImageInfo->height = height;
-		pImageInfo->blockiness = blockiness;
-		pImageInfo->blurring = blurring;
-		imageExif.Export(&pImageInfo->exifInfo);
-
-        return true;
-    }
-
     bool TImageInfo::Export(adImageInfoPtrW pImageInfo) const
     {
         if(pImageInfo == NULL)

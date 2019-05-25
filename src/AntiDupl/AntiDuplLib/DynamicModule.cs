@@ -41,13 +41,17 @@ namespace AntiDupl.NET
             m_fileName = fileName;
 
             if (string.IsNullOrEmpty(m_fileName))
+            {
                 throw new Exception(string.Format("Bad library file name '{0}'!", m_fileName));
+            }
 
             try
             {
                 m_module = LoadLibrary(m_fileName);
                 if (m_module == IntPtr.Zero)
+                {
                     throw new Exception(string.Format("Can't load {0} dynamic library!", m_fileName));
+                }
 
                 FieldInfo[] fields = this.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance);
                 for (int i = 0; i < fields.Length; ++i)

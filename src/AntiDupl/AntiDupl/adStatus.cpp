@@ -34,19 +34,6 @@ namespace ad
     {
     }
 
-    adError TThreadStatus::Export(adStatusPtrA pStatus) const
-    {
-        if(pStatus == NULL)
-            return AD_ERROR_INVALID_POINTER;
-
-        pStatus->state = m_state;
-        m_path.CopyTo(pStatus->path, MAX_PATH);
-        pStatus->total = m_assignedCount;
-        pStatus->current = m_processedCount;
-
-        return AD_OK;
-    }
-
     adError TThreadStatus::Export(adStatusPtrW pStatus) const
     {
         if(pStatus == NULL)
@@ -113,33 +100,6 @@ namespace ad
         TCriticalSection::TLocker locker(&m_criticalSection);
 
         memcpy(pStatistic, (void*)&m_statistic, sizeof(adStatistic));
-
-        return AD_OK;
-    }
-
-    adError TStatus::Export(adThreadType threadType, adSize threadId, adStatusPtrA pStatus) const
-    {
-        if(pStatus == NULL)
-            return AD_ERROR_INVALID_POINTER;
-
-        if(threadType < AD_THREAD_TYPE_MAIN || threadType >= AD_THREAD_TYPE_SIZE)            
-            return AD_ERROR_INVALID_THREAD_TYPE;
-
-        TCriticalSection::TLocker locker(&m_criticalSection);
-
-        switch(threadType)
-        {
-        case AD_THREAD_TYPE_MAIN:
-            pStatus->state = m_state;
-            m_path.CopyTo(pStatus->path, MAX_PATH);
-            pStatus->current = m_current;
-            pStatus->total = m_total;
-            break;
-        case AD_THREAD_TYPE_COLLECT:
-            return threadId < m_collectThreadStatuses.size() ? m_collectThreadStatuses[threadId].Export(pStatus) : AD_ERROR_INVALID_THREAD_ID;
-        case AD_THREAD_TYPE_COMPARE:
-            return threadId < m_compareThreadStatuses.size() ? m_compareThreadStatuses[threadId].Export(pStatus) : AD_ERROR_INVALID_THREAD_ID;
-        }
 
         return AD_OK;
     }

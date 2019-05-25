@@ -467,11 +467,6 @@ namespace AntiDupl.NET
         //-------------------API functions:------------------------------------
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-        public delegate Error adVersionGet_fn(VersionType versionType, IntPtr pVersion, IntPtr pVersionSize);
-        [DynamicModuleApi]
-        public adVersionGet_fn adVersionGet = null;
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
         public delegate IntPtr adCreate_fn(string userPath);
         [DynamicModuleApi]
         public adCreate_fn adCreateW = null;
@@ -525,16 +520,6 @@ namespace AntiDupl.NET
         public delegate Error adPathGetW_fn(IntPtr handle, PathType pathType, IntPtr pPath, IntPtr pPathSize);
         [DynamicModuleApi]
         public adPathGetW_fn adPathGetW = null;
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-        public delegate Error adPathSetW_fn(IntPtr handle, PathType pathType, IntPtr pPath, IntPtr pathSize);
-        [DynamicModuleApi]
-        public adPathSetW_fn adPathSetW = null;
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
-        public delegate Error adStatisticGet_fn(IntPtr handle, IntPtr pStatistic);
-        [DynamicModuleApi]
-        public adStatisticGet_fn adStatisticGet = null;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
         public delegate Error adStatusGetW_fn(IntPtr handle, ThreadType threadType, IntPtr threadId, IntPtr pStatusW);

@@ -181,11 +181,19 @@ namespace AntiDupl.NET
         public string GetDirectoryString()
         {
             int i = path.Length - 1;
-            while (i >= 0 && path[i] != '\\') i--;
+            while (i >= 0 && path[i] != '\\')
+            {
+                i--;
+            }
+
             if (i < 0)
+            {
                 return "";
+            }
             else
+            {
                 return path.Substring(0, i);
+            }
         }
 
         public string GetFileNameWithoutExtensionString()

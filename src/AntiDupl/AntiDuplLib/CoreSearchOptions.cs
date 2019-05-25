@@ -151,29 +151,65 @@ namespace AntiDupl.NET
         {
             ArrayList extensions = new ArrayList();
             if(JPEG)
+            {
                 extensions.AddRange(s_jpegExtensions);
-            if(TIFF)
+            }
+
+            if (TIFF)
+            {
                 extensions.AddRange(s_tiffExtensions);
-            if(BMP)
+            }
+
+            if (BMP)
+            {
                 extensions.AddRange(s_bmpExtensions);
-            if(GIF)
+            }
+
+            if (GIF)
+            {
                 extensions.AddRange(s_gifExtensions);
-            if(PNG)
+            }
+
+            if (PNG)
+            {
                 extensions.AddRange(s_pngExtensions);
-            if(EMF)
+            }
+
+            if (EMF)
+            {
                 extensions.AddRange(s_emfExtensions);
-            if(WMF)
+            }
+
+            if (WMF)
+            {
                 extensions.AddRange(s_wmfExtensions);
-            if(ICON)
+            }
+
+            if (ICON)
+            {
                 extensions.AddRange(s_iconExtensions);
-            if(JP2)
+            }
+
+            if (JP2)
+            {
                 extensions.AddRange(s_jp2Extensions);
-            if(PSD)
+            }
+
+            if (PSD)
+            {
                 extensions.AddRange(s_psdExtensions);
+            }
+
             if (DDS)
+            {
                 extensions.AddRange(s_ddsExtensions);
+            }
+
             if (TGA)
+            {
                 extensions.AddRange(s_tgaExtensions);
+            }
+
             return (string[])extensions.ToArray(typeof(string));
         }
     }

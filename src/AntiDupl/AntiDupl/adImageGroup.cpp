@@ -320,33 +320,6 @@ namespace ad
 		return AD_OK;
 	}
 
-	adError TImageGroupStorage::Export(adSize groupId, adSizePtr pStartFrom, adImageInfoPtrA pImageInfo, adSizePtr pImageInfoSize) const
-	{
-		if(pImageInfo == NULL || pImageInfoSize == NULL || pStartFrom == NULL)
-			return AD_ERROR_INVALID_POINTER;
-
-		const TImageGroupPtr pImageGroup = ((TImageGroupStorage*)this)->Get(groupId, false);
-		if(pImageGroup == NULL)
-			return AD_ERROR_INVALID_GROUP_ID;
-
-		const TImageInfoPtrVector & images = pImageGroup->images;
-		if(images.size() < *pStartFrom)
-		{
-			*pStartFrom = images.size();
-			return AD_ERROR_INVALID_START_POSITION;
-		}
-
-		adImageInfoPtrA p = pImageInfo;
-		*pImageInfoSize = std::min(images.size() - *pStartFrom, *pImageInfoSize);
-		for(size_t i = *pStartFrom, n = *pStartFrom + *pImageInfoSize; i < n; ++i)
-		{
-			images[i]->Export(p);
-			p++;
-		}
-
-		return AD_OK;
-	}
-
 	adError TImageGroupStorage::Export(adSize groupId, adSizePtr pStartFrom, adImageInfoPtrW pImageInfo, adSizePtr pImageInfoSize) const
 	{
 		if(pImageInfo == NULL || pImageInfoSize == NULL || pStartFrom == NULL)

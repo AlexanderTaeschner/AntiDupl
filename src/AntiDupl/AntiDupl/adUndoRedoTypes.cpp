@@ -145,27 +145,6 @@ namespace ad
         return AD_OK;
     }
 
-    adError TUndoRedoStage::Export(adSizePtr pStartFrom, adResultPtrA pResult, adSizePtr pResultSize) const
-    {
-        if(pResult == NULL || pResultSize == NULL || pStartFrom == NULL)
-            return AD_ERROR_INVALID_POINTER;
-        if(results.size() < *pStartFrom)
-        {
-            *pStartFrom = results.size();
-            return AD_ERROR_INVALID_START_POSITION;
-        }
-
-        adResultPtrA p = pResult;
-        *pResultSize = std::min(results.size() - *pStartFrom, *pResultSize);
-        for(size_t i = *pStartFrom, n = *pStartFrom + *pResultSize; i < n; ++i)
-        {
-            results[i]->Export(p);
-            p++;
-        }
-
-        return AD_OK;
-    }
-
 	// Ёскпортириет список результатов из хранилища.
     adError TUndoRedoStage::Export(adSizePtr pStartFrom, adResultPtrW pResult, adSizePtr pResultSize) const
     {
