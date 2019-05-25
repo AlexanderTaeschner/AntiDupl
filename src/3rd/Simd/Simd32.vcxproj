@@ -19,6 +19,12 @@
   <PropertyGroup Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ItemDefinitionGroup>
     <ClCompile>
@@ -60,11 +66,11 @@
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
     </ClCompile>
     <ClCompile Include=".\SimdAvx2*.cpp">
-	  <EnableEnhancedInstructionSet Condition="'$(PlatformToolset)'=='v140'">AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
-	  <EnableEnhancedInstructionSet Condition="'$(PlatformToolset)'=='v141'">AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet Condition="'$(PlatformToolset)'=='v140'">AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet Condition="'$(PlatformToolset)'=='v141'">AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <EnableEnhancedInstructionSet Condition="'$(PlatformToolset)'=='v120'">AdvancedVectorExtensions</EnableEnhancedInstructionSet>
     </ClCompile>
-	<ClCompile Include=".\SimdAvx512f*.cpp">
+    <ClCompile Include=".\SimdAvx512f*.cpp">
       <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
     </ClCompile>
     <ClCompile Include=".\SimdAvx512bw*.cpp">
