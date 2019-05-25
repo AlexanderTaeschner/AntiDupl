@@ -95,20 +95,6 @@
     <Compile Include="GUIControl\ComplexProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CoreAdvancedOptions.cs" />
-    <Compile Include="CoreCompareOptions.cs" />
-    <Compile Include="CoreDefectOptions.cs" />
-    <Compile Include="CoreGroup.cs" />
-    <Compile Include="CoreImageInfo.cs" />
-    <Compile Include="CoreDll.cs" />
-    <Compile Include="CorePathWithSubFolder.cs" />
-    <Compile Include="CoreResult.cs" />
-    <Compile Include="CoreSearchOptions.cs" />
-    <Compile Include="CoreStatistic.cs" />
-    <Compile Include="CoreStatus.cs" />
-    <Compile Include="CoreVersion.cs" />
-    <Compile Include="DynamicModule.cs" />
-    <Compile Include="External.cs" />
     <Compile Include="FolderOpener.cs" />
     <Compile Include="GUIControl\LabeledNumericUpDown.cs">
       <SubType>Component</SubType>
@@ -135,7 +121,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProgressUtils.cs" />
-    <Compile Include="StringsDefaultRussian.cs" />
     <Compile Include="CoreOptions.cs" />
     <Compile Include="Form\CoreOptionsForm.cs">
       <SubType>Form</SubType>
@@ -143,7 +128,6 @@
     <Compile Include="Form\CorePathsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CoreLib.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="DataGridViewCustomRow.cs" />
     <Compile Include="HotKeyOptions.cs" />
@@ -186,7 +170,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Resources.cs" />
     <Compile Include="ResultRowSetter.cs" />
     <Compile Include="GUIControl\MainSplitContainer.cs">
       <SubType>Component</SubType>
@@ -231,9 +214,6 @@
     <Compile Include="Form\StartFinishForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Strings.cs" />
-    <Compile Include="StringsDefaultEnglish.cs" />
-    <Compile Include="Version.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
@@ -264,5 +244,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AntiDuplLib\AntiDuplLib.csproj">
+      <Project>{35c6c3e3-8a56-470b-8b2c-276a5a53587b}</Project>
+      <Name>AntiDuplLib</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
