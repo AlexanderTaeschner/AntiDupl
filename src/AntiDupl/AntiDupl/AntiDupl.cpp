@@ -126,8 +126,6 @@ template <class TChar> adError Load(adEngineHandle handle, adFileType fileType, 
 
 	switch(fileType)
 	{
-	case AD_FILE_OPTIONS:
-		return handle->Options()->Load(pPath);
 	case AD_FILE_RESULT:
 		return handle->Result()->Load(pPath, check != FALSE);
 	case AD_FILE_MISTAKE_DATA_BASE:
@@ -156,8 +154,6 @@ template <class TChar> adError Save(adEngineHandle handle, adFileType fileType, 
 
 	switch(fileType)
 	{
-	case AD_FILE_OPTIONS:
-		return handle->Options()->Save(pPath);
 	case AD_FILE_RESULT:
 		return handle->Result()->Save(pPath);
 	case AD_FILE_MISTAKE_DATA_BASE:
@@ -180,9 +176,6 @@ DLLAPI adError adClear(adEngineHandle handle, adFileType fileType)
 
     switch(fileType)
     {
-    case AD_FILE_OPTIONS:
-        handle->Options()->SetDefault();
-        break;
     case AD_FILE_RESULT:
         handle->Result()->Clear();
         break;

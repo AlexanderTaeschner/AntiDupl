@@ -156,7 +156,6 @@ extern "C"
 
     enum adFileType : adInt32
     {
-        AD_FILE_OPTIONS = 0,
         AD_FILE_RESULT = 1,
         AD_FILE_MISTAKE_DATA_BASE = 2,
         AD_FILE_IMAGE_DATA_BASE = 3,

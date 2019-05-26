@@ -79,9 +79,6 @@ namespace ad
         adError Import(adOptionsType optionsType, void* pOptions);
         adError Export(adOptionsType optionsType, void* pOptions) const;
 
-        adError Load(const TChar *fileName);
-        adError Save(const TChar *fileName) const;
-
         int GetIgnoreWidthFrame() const;
 
     private:

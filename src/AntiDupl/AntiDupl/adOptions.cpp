@@ -21,16 +21,11 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-#include "adIniFile.h"
 #include "adFileUtils.h"
 #include "adOptions.h"
 
 namespace ad
 {
-    //----------------Default values:--------------------------------------------
-
-    const TChar DEFAULT_fileName[] = TEXT("AntiDupl.ini");
-
     //---------------------------------------------------------------------------
     TOption::TOption(int *pValue, const TChar* section, const TChar* key, int default, int min, int max)
         :m_pValue(pValue),
@@ -54,17 +49,6 @@ namespace ad
             *m_pValue = m_default;
     }
 
-    void TOption::Load(const TChar *fileName)
-    {
-        TIniFile iniFile(fileName, m_section.c_str());
-        *m_pValue = iniFile.ReadInteger(m_key.c_str(), m_default);
-    }
-
-    bool TOption::Save(const TChar *fileName) const
-    {
-        TIniFile iniFile(fileName, m_section.c_str());
-        return iniFile.WriteInteger(m_key.c_str(), *m_pValue);
-    }
     //---------------------------------------------------------------------------
 	// Класс опций
     TOptions::TOptions(const TString & userPath_)
@@ -199,51 +183,6 @@ namespace ad
         }
 
         return AD_OK;
-    }
-
-    adError TOptions::Load(const TChar *fileName)
-    {
-        TString path;
-        if(fileName == NULL)
-            path = GetApplicationDirectory() + TEXT("\\") + DEFAULT_fileName;
-        else
-            path = fileName;
-
-        if(!IsFileExists(path.c_str()))
-            return AD_ERROR_FILE_IS_NOT_EXIST;
-
-        searchPaths.Load(path.c_str());
-        ignorePaths.Load(path.c_str());
-        validPaths.Load(path.c_str());
-        deletePaths.Load(path.c_str());
-
-        for(TOptionsList::iterator it = m_options.begin();  it != m_options.end(); ++it)
-            it->Load(path.c_str());
-
-        Validate();
-
-        return AD_OK;
-    }
-
-    adError TOptions::Save(const TChar *fileName) const
-    {
-        bool result = true;
-
-        TString path;
-        if(fileName == NULL)
-            path = GetApplicationDirectory() + TEXT("\\") + DEFAULT_fileName;
-        else
-            path = fileName;
-
-        result = result && searchPaths.Save(path.c_str());
-        result = result && ignorePaths.Save(path.c_str());
-        result = result && validPaths.Save(path.c_str());
-        result = result && deletePaths.Save(path.c_str());
-
-        for(TOptionsList::const_iterator it = m_options.begin();  it != m_options.end(); ++it)
-            result = result && it->Save(path.c_str());
-
-        return result ? AD_OK : AD_ERROR_UNKNOWN;
     }
 
     int TOptions::GetIgnoreWidthFrame() const

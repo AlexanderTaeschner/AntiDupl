@@ -101,7 +101,6 @@ namespace AntiDupl.NET
 
         public enum FileType : int
         {
-            Options = 0,
             Result = 1,
             MistakeDataBase = 2,
             ImageDataBase = 3,
