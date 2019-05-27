@@ -45,11 +45,11 @@ namespace AntiDupl.NET
         }
         private Position m_position;
 
-        private CoreDll.RenameCurrentType m_renameCurrentType;
+        private RenameCurrentType m_renameCurrentType;
         /// <summary>
         /// Переименовывать первую или вторую картинку.
         /// </summary>
-        public CoreDll.RenameCurrentType RenameCurrentType {get{return m_renameCurrentType;}}
+        public RenameCurrentType RenameCurrentType {get{return m_renameCurrentType;}}
         
         private const int IBW = 1;//Internal border width
         private const int EBW = 2;//External border width
@@ -206,8 +206,8 @@ namespace AntiDupl.NET
                 m_imageSizeLabel.Text = m_currentImageInfo.GetImageSizeString();
                 m_imageBlocknessLabel.Text = m_currentImageInfo.GetBlockinessString();
                 m_imageBlurringLabel.Text = m_currentImageInfo.GetBlurringString();
-                m_imageTypeLabel.Text = m_currentImageInfo.type == CoreDll.ImageType.None ? "   " : m_currentImageInfo.GetImageTypeString();
-                if (currentImageInfo.exifInfo.isEmpty == CoreDll.FALSE)
+                m_imageTypeLabel.Text = m_currentImageInfo.type == ImageType.None ? "   " : m_currentImageInfo.GetImageTypeString();
+                if (!currentImageInfo.exifInfo.isEmpty)
                 {
                     m_imageExifLabel.Visible = true;
                     SetExifTooltip(currentImageInfo);
@@ -275,7 +275,7 @@ namespace AntiDupl.NET
 
         public void SetResult(CoreResult result)
         {
-            if(result.type == CoreDll.ResultType.None)
+            if(result.type == ResultType.None)
                 throw new Exception("Bad result type!");
 
             m_group = result.group;
@@ -284,7 +284,7 @@ namespace AntiDupl.NET
             {
             case Position.Left:
             case Position.Top:
-                if (result.type == CoreDll.ResultType.DuplImagePair)
+                if (result.type == ResultType.DuplImagePair)
                     SetImageInfo(result.first, result.second);
                 else
                     SetImageInfo(result.first, null);
@@ -292,7 +292,7 @@ namespace AntiDupl.NET
                 break;
             case Position.Right:
             case Position.Bottom:
-                if (result.type == CoreDll.ResultType.DuplImagePair)
+                if (result.type == ResultType.DuplImagePair)
                     SetImageInfo(result.second, result.first);
                 else
                     SetImageInfo(result.second, null);
@@ -311,11 +311,11 @@ namespace AntiDupl.NET
             {
                 case Position.Left:
                 case Position.Top:
-                    m_renameCurrentType = CoreDll.RenameCurrentType.First;
+                    m_renameCurrentType = RenameCurrentType.First;
                     break;
                 case Position.Right:
                 case Position.Bottom:
-                    m_renameCurrentType = CoreDll.RenameCurrentType.Second;
+                    m_renameCurrentType = RenameCurrentType.Second;
                     break;
             }
 
@@ -479,19 +479,19 @@ namespace AntiDupl.NET
         /// <param name="result"></param>
         public void UpdateExifTooltip(CoreResult result)
         {
-            if (result.type == CoreDll.ResultType.None)
+            if (result.type == ResultType.None)
                 throw new Exception("Bad result type!");
 
             switch (m_position)
             {
                 case Position.Left:
                 case Position.Top:
-                    if (result.first.exifInfo.isEmpty == CoreDll.FALSE)
+                    if (!result.first.exifInfo.isEmpty)
                         SetExifTooltip(result.first);
                     break;
                 case Position.Right:
                 case Position.Bottom:
-                    if (result.second.exifInfo.isEmpty == CoreDll.FALSE)
+                    if (!result.second.exifInfo.isEmpty)
                         SetExifTooltip(result.second);
                     break;
             }
@@ -500,7 +500,7 @@ namespace AntiDupl.NET
         /// <summary>
         /// Проверка равны ли Exif.
         /// </summary>
-        private bool ExifEqual(CoreDll.adImageExifW imageExif1, CoreDll.adImageExifW imageExif2)
+        private bool ExifEqual(ImageExif imageExif1, ImageExif imageExif2)
         {
             if (imageExif1.isEmpty == imageExif2.isEmpty &&
                 imageExif1.artist.CompareTo(imageExif2.artist) == 0 &&

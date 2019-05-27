@@ -114,9 +114,9 @@ namespace AntiDupl.NET
             if (currentImageInfo != null)
             {
                 StopAnimate();
-                if (m_currentImageInfo.type != CoreDll.ImageType.None)
+                if (m_currentImageInfo.type != ImageType.None)
                 {
-                    if (m_currentImageInfo.path.Length < MAX_PATH && m_currentImageInfo.type <= CoreDll.ImageType.Icon)
+                    if (m_currentImageInfo.path.Length < MAX_PATH && m_currentImageInfo.type <= ImageType.Icon)
                     {
                         try
                         {

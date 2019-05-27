@@ -72,10 +72,10 @@ namespace AntiDupl.NET
             {
                 switch (result.type)
                 {
-                    case CoreDll.ResultType.DefectImage:
+                    case ResultType.DefectImage:
                         state = State.Defect;
                         break;
-                    case CoreDll.ResultType.DuplImagePair:
+                    case ResultType.DuplImagePair:
                         state = State.DuplPair;
                         break;
                 }

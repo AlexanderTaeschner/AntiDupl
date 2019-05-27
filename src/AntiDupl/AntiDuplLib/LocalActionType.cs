@@ -1,7 +1,7 @@
 ﻿/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
-* Copyright (c) 2002-2018 Yermalayeu Ihar.
+* Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2018 Borisov Dmitry.
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy 
 * of this software and associated documentation files (the "Software"), to deal
@@ -21,29 +21,24 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 
 namespace AntiDupl.NET
 {
-    public class CoreGroup
+    public enum LocalActionType : int //то же что и  enum adLocalActionType : adInt32, также еще в class HotKeyOptions enum Action
     {
-        public int id;
-        public CoreImageInfo[] images;
-
-        public Size sizeMax = new Size(0, 0);
-
-        internal CoreGroup(ref CoreDll.adGroup group, CoreLib core)
-        {
-            id = group.id.ToInt32();
-            images = core.GetImageInfo(id, 0, (uint)group.size);
-            for (int i = 0; i < images.Length; ++i)
-            {
-                sizeMax.Width = Math.Max(sizeMax.Width, (int)images[i].width);
-                sizeMax.Height = Math.Max(sizeMax.Height, (int)images[i].height);
-            }
-        }
+        DeleteDefect = 0,
+        DeleteFirst = 1,
+        DeleteSecond = 2,
+        DeleteBoth = 3,
+        RenameFirstToSecond = 4,
+        RenameSecondToFirst = 5,
+        RenameFirstLikeSecond = 6,
+        RenameSecondLikeFirst = 7,
+        MoveFirstToSecond = 8,
+        MoveSecondToFirst = 9,
+        MoveAndRenameFirstToSecond = 10,
+        MoveAndRenameSecondToFirst = 11,
+        PerformHint = 12,
+        Mistake = 13,
     }
 }

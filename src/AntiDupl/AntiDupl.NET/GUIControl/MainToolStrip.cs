@@ -99,7 +99,7 @@ namespace AntiDupl.NET
             m_thresholdDifferenceComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             m_thresholdDifferenceComboBox.FlatStyle = FlatStyle.Popup;
             m_thresholdDifferenceComboBox.SelectedIndexChanged += new EventHandler(OnThresholdDifferenceChanged);
-            if (m_coreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum)
+            if (m_coreOptions.compareOptions.algorithmComparing == AlgorithmComparing.SquaredSum)
                 for (int i = 0; i <= CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
                     m_thresholdDifferenceComboBox.Items.Add(string.Format("{0} %", i));
             else
@@ -118,14 +118,14 @@ namespace AntiDupl.NET
             m_undoButton = InitFactory.ToolButton.Create("UndoButton", null, m_mainMenu.UndoAction);
             m_redoButton = InitFactory.ToolButton.Create("RedoButton", null, m_mainMenu.RedoAction);
 
-            m_mistakeButton = InitFactory.ToolButton.Create("MistakesButton", CoreDll.LocalActionType.Mistake, MakeAction);
-            m_performHintButton = InitFactory.ToolButton.Create("PerformHintButton", CoreDll.LocalActionType.PerformHint, MakeAction);
+            m_mistakeButton = InitFactory.ToolButton.Create("MistakesButton", LocalActionType.Mistake, MakeAction);
+            m_performHintButton = InitFactory.ToolButton.Create("PerformHintButton", LocalActionType.PerformHint, MakeAction);
 
-            m_deleteFirstButton = InitFactory.ToolButton.Create("DeleteFirstsVerticalButton", CoreDll.LocalActionType.DeleteFirst, MakeAction);
-            m_deleteSecondButton = InitFactory.ToolButton.Create("DeleteSecondsVerticalButton", CoreDll.LocalActionType.DeleteSecond, MakeAction);
-            m_deleteBothButton = InitFactory.ToolButton.Create("DeleteBothesVerticalButton", CoreDll.LocalActionType.DeleteBoth, MakeAction);
+            m_deleteFirstButton = InitFactory.ToolButton.Create("DeleteFirstsVerticalButton", LocalActionType.DeleteFirst, MakeAction);
+            m_deleteSecondButton = InitFactory.ToolButton.Create("DeleteSecondsVerticalButton", LocalActionType.DeleteSecond, MakeAction);
+            m_deleteBothButton = InitFactory.ToolButton.Create("DeleteBothesVerticalButton", LocalActionType.DeleteBoth, MakeAction);
 
-            m_deleteDefectButton = InitFactory.ToolButton.Create("DeleteDefectsVerticalButton", CoreDll.LocalActionType.DeleteDefect, MakeAction);
+            m_deleteDefectButton = InitFactory.ToolButton.Create("DeleteDefectsVerticalButton", LocalActionType.DeleteDefect, MakeAction);
 
             m_helpButton = InitFactory.ToolButton.Create("HelpButton", null, m_mainMenu.HelpAction);
 
@@ -178,16 +178,16 @@ namespace AntiDupl.NET
         private void MakeAction(object sender, EventArgs e)
         {
             ToolStripItem item = (ToolStripItem)sender;
-            CoreDll.LocalActionType action = (CoreDll.LocalActionType)item.Tag;
-            m_mainSplitContainer.resultsListView.MakeAction(action, CoreDll.TargetType.Selected);
+            LocalActionType action = (LocalActionType)item.Tag;
+            m_mainSplitContainer.resultsListView.MakeAction(action, TargetType.Selected);
         }
         
         private void OnSelectedResultsChanged()
         {
-            bool mistake = m_core.CanApply(CoreDll.ActionEnableType.Any);
-            bool performHint = m_core.CanApply(CoreDll.ActionEnableType.PerformHint);
-            bool duplPair = m_core.CanApply(CoreDll.ActionEnableType.DuplPair);
-            bool defect = m_core.CanApply(CoreDll.ActionEnableType.Defect);
+            bool mistake = m_core.CanApply(ActionEnableType.Any);
+            bool performHint = m_core.CanApply(ActionEnableType.PerformHint);
+            bool duplPair = m_core.CanApply(ActionEnableType.DuplPair);
+            bool defect = m_core.CanApply(ActionEnableType.Defect);
 
             m_mistakeButton.Enabled = mistake;
             m_performHintButton.Enabled = performHint;
@@ -196,8 +196,8 @@ namespace AntiDupl.NET
             m_deleteBothButton.Enabled = duplPair;
             m_deleteDefectButton.Enabled = defect;
 
-            m_undoButton.Enabled = m_core.CanApply(CoreDll.ActionEnableType.Undo);
-            m_redoButton.Enabled = m_core.CanApply(CoreDll.ActionEnableType.Redo);
+            m_undoButton.Enabled = m_core.CanApply(ActionEnableType.Undo);
+            m_redoButton.Enabled = m_core.CanApply(ActionEnableType.Redo);
         }
 
         /// <summary>
@@ -206,17 +206,17 @@ namespace AntiDupl.NET
         private void OnOptionsChanged()
         {
             m_mistakeButton.Enabled = m_coreOptions.advancedOptions.mistakeDataBase &&
-                 m_core.CanApply(CoreDll.ActionEnableType.Any);
+                 m_core.CanApply(ActionEnableType.Any);
 
             m_algorithmComparingComboBox.SelectedIndex = (int)m_coreOptions.compareOptions.algorithmComparing;
-            if (m_coreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum &&
+            if (m_coreOptions.compareOptions.algorithmComparing == AlgorithmComparing.SquaredSum &&
                 m_thresholdDifferenceComboBox.Items.Count > CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM + 1)
             {
                 m_thresholdDifferenceComboBox.Items.Clear();
                 for (int i = 0; i <= CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM; i++)
                     m_thresholdDifferenceComboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
             }
-            if (m_coreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SSIM &&
+            if (m_coreOptions.compareOptions.algorithmComparing == AlgorithmComparing.SSIM &&
                  m_thresholdDifferenceComboBox.Items.Count < CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SSIM + 1)
             {
                 m_thresholdDifferenceComboBox.Items.Clear();
@@ -280,8 +280,8 @@ namespace AntiDupl.NET
 
         private void OnAlgorithmComparingChanged(object sender, EventArgs e)
         {
-            m_coreOptions.compareOptions.algorithmComparing = (CoreDll.AlgorithmComparing)m_algorithmComparingComboBox.SelectedIndex;
-            if (m_coreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SquaredSum &&
+            m_coreOptions.compareOptions.algorithmComparing = (AlgorithmComparing)m_algorithmComparingComboBox.SelectedIndex;
+            if (m_coreOptions.compareOptions.algorithmComparing == AlgorithmComparing.SquaredSum &&
                 m_thresholdDifferenceComboBox.Items.Count > CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SQUARED_SUM + 1)
             {
                 m_thresholdDifferenceComboBox.Items.Clear();
@@ -289,7 +289,7 @@ namespace AntiDupl.NET
                     m_thresholdDifferenceComboBox.Items.Add(new LabeledComboBox.Value(i, string.Format("{0} %", i)));
                 m_thresholdDifferenceComboBox.SelectedIndex = CoreOptionsForm.THRESHOLD_DIFFERENCE_DEFAULT_SQUARED_SUM;
             }
-            if (m_coreOptions.compareOptions.algorithmComparing == CoreDll.AlgorithmComparing.SSIM &&
+            if (m_coreOptions.compareOptions.algorithmComparing == AlgorithmComparing.SSIM &&
                  m_thresholdDifferenceComboBox.Items.Count < CoreOptionsForm.THRESHOLD_DIFFERENCE_MAX_SSIM + 1)
             {
                 m_thresholdDifferenceComboBox.Items.Clear();

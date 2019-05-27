@@ -52,8 +52,8 @@ namespace AntiDupl.NET
         private void InitializeComponents()
         {
             m_imagePreviewPanel = new ImagePreviewPanel(m_core, m_options, m_resultsListView, ImagePreviewPanel.Position.Top);
-            m_deleteButton = InitFactory.ToolButton.Create("DeleteDefectVerticalButton", CoreDll.LocalActionType.DeleteDefect, OnButtonClicked);
-            m_mistakeButton = InitFactory.ToolButton.Create("MistakeButton", CoreDll.LocalActionType.Mistake, OnButtonClicked);
+            m_deleteButton = InitFactory.ToolButton.Create("DeleteDefectVerticalButton", LocalActionType.DeleteDefect, OnButtonClicked);
+            m_mistakeButton = InitFactory.ToolButton.Create("MistakeButton", LocalActionType.Mistake, OnButtonClicked);
         }
 
         private void UpdateStrings()
@@ -82,8 +82,8 @@ namespace AntiDupl.NET
         private void OnButtonClicked(object sender, System.EventArgs e)
         {
             ToolStripButton item = (ToolStripButton)sender;
-            CoreDll.LocalActionType action = (CoreDll.LocalActionType)item.Tag;
-            m_resultsListView.MakeAction(action, CoreDll.TargetType.Current);
+            LocalActionType action = (LocalActionType)item.Tag;
+            m_resultsListView.MakeAction(action, TargetType.Current);
         }
 
         private void OnOptionsChanged()

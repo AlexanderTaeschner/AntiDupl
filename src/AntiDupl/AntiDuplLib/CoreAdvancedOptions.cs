@@ -29,16 +29,16 @@ namespace AntiDupl.NET
 {
     public class CoreAdvancedOptions
     {
-        public bool deleteToRecycleBin;
-        public bool mistakeDataBase;
-        public int ratioResolution;
-        public int compareThreadCount;
-        public int collectThreadCount;
-        public int reducedImageSize;
-        public int undoQueueSize;
-        public int resultCountMax;
-        public int ignoreFrameWidth;
-        
+        public bool deleteToRecycleBin { get; set; }
+        public bool mistakeDataBase { get; set; }
+        public int ratioResolution { get; set; }
+        public int compareThreadCount { get; set; }
+        public int collectThreadCount { get; set; }
+        public int reducedImageSize { get; set; }
+        public int undoQueueSize { get; set; }
+        public int resultCountMax { get; set; }
+        public int ignoreFrameWidth { get; set; }
+
         public CoreAdvancedOptions()
         {
         }
@@ -56,7 +56,7 @@ namespace AntiDupl.NET
             ignoreFrameWidth = advancedOptions.ignoreFrameWidth;
         }
 
-        public CoreAdvancedOptions(ref CoreDll.adAdvancedOptions advancedOptions)
+        internal CoreAdvancedOptions(ref CoreDll.adAdvancedOptions advancedOptions)
         {
             deleteToRecycleBin = advancedOptions.deleteToRecycleBin != CoreDll.FALSE;
             mistakeDataBase = advancedOptions.mistakeDataBase != CoreDll.FALSE;
@@ -69,7 +69,7 @@ namespace AntiDupl.NET
             ignoreFrameWidth = advancedOptions.ignoreFrameWidth;
         }
 
-        public void ConvertTo(ref CoreDll.adAdvancedOptions advancedOptions)
+        internal void ConvertTo(ref CoreDll.adAdvancedOptions advancedOptions)
         {
             advancedOptions.deleteToRecycleBin = deleteToRecycleBin ? CoreDll.TRUE : CoreDll.FALSE;
             advancedOptions.mistakeDataBase = mistakeDataBase ? CoreDll.TRUE : CoreDll.FALSE;

@@ -29,18 +29,18 @@ namespace AntiDupl.NET
 {
     public class CoreImageInfo
     {
-        public ulong id;
-        public string path;
-        public ulong size;
-        public ulong time;
-        public CoreDll.ImageType type;
-        public uint width;
-        public uint height;
-        public double blockiness;
-        public double blurring;
-        public CoreDll.adImageExifW exifInfo;
+        public ulong id { get; }
+        public string path { get; }
+        public ulong size { get; }
+        public ulong time { get; }
+        public ImageType type { get; }
+        public uint width { get; }
+        public uint height { get; }
+        public double blockiness { get; }
+        public double blurring { get; }
+        public ImageExif exifInfo { get; }
 
-        public CoreImageInfo(ref CoreDll.adImageInfoW imageInfo)
+        internal CoreImageInfo(ref CoreDll.adImageInfoW imageInfo)
         {
             id = (ulong)imageInfo.id;
             path = imageInfo.path;
@@ -51,7 +51,7 @@ namespace AntiDupl.NET
             height = imageInfo.height;
             blockiness = imageInfo.blockiness;
             blurring = imageInfo.blurring;
-            exifInfo = imageInfo.exifInfo;
+            exifInfo = new ImageExif(ref imageInfo.exifInfo);
         }
 
         public string GetImageSizeString()
@@ -68,43 +68,43 @@ namespace AntiDupl.NET
             StringBuilder builder = new StringBuilder();
             switch (type)
             {
-                case CoreDll.ImageType.None:
+                case ImageType.None:
                     builder.Append("");
                     break;
-                case CoreDll.ImageType.Bmp:
+                case ImageType.Bmp:
                     builder.Append("BMP");
                     break;
-                case CoreDll.ImageType.Gif:
+                case ImageType.Gif:
                     builder.Append("GIF");
                     break;
-                case CoreDll.ImageType.Jpeg:
+                case ImageType.Jpeg:
                     builder.Append("JPG");
                     break;
-                case CoreDll.ImageType.Png:
+                case ImageType.Png:
                     builder.Append("PNG");
                     break;
-                case CoreDll.ImageType.Tiff:
+                case ImageType.Tiff:
                     builder.Append("TIFF");
                     break;
-                case CoreDll.ImageType.Emf:
+                case ImageType.Emf:
                     builder.Append("EMF");
                     break;
-                case CoreDll.ImageType.Wmf:
+                case ImageType.Wmf:
                     builder.Append("WMF");
                     break;
-                case CoreDll.ImageType.Exif:
+                case ImageType.Exif:
                     builder.Append("EXIF");
                     break;
-                case CoreDll.ImageType.Icon:
+                case ImageType.Icon:
                     builder.Append("ICON");
                     break;
-                case CoreDll.ImageType.Jp2:
+                case ImageType.Jp2:
                     builder.Append("JP2");
                     break;
-                case CoreDll.ImageType.Psd:
+                case ImageType.Psd:
                     builder.Append("PSD");
                     break;
-                case CoreDll.ImageType.Dds:
+                case ImageType.Dds:
                     builder.Append("DDS");
                     break;
             }

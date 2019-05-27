@@ -29,17 +29,17 @@ namespace AntiDupl.NET
 {
     public class CoreResult
     {
-        public CoreDll.ResultType type;
-        public CoreImageInfo first;
-        public CoreImageInfo second;
-        public CoreDll.DefectType defect;
-        public double difference;
-        public CoreDll.TransformType transform;
-        public int group;
-        public int groupSize;
-        public CoreDll.HintType hint;
+        public ResultType type { get; }
+        public CoreImageInfo first { get; }
+        public CoreImageInfo second { get; }
+        public DefectType defect { get; }
+        public double difference { get; }
+        public TransformType transform { get; }
+        public int group { get; }
+        public int groupSize { get; }
+        public HintType hint { get; }
 
-        public CoreResult(ref CoreDll.adResultW result)
+        internal CoreResult(ref CoreDll.adResultW result)
         {
             type = result.type;
             first = new CoreImageInfo(ref result.first);

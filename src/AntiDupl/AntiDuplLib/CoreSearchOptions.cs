@@ -84,7 +84,7 @@ namespace AntiDupl.NET
             TGA = searchOptions.TGA;
         }
 
-        public CoreSearchOptions(CoreDll.adSearchOptions searchOptions)
+        internal CoreSearchOptions(CoreDll.adSearchOptions searchOptions)
         {
             system = searchOptions.system != CoreDll.FALSE;
             hidden = searchOptions.hidden != CoreDll.FALSE;
@@ -103,7 +103,7 @@ namespace AntiDupl.NET
             TGA = searchOptions.TGA != CoreDll.FALSE;
         }
 
-        public void ConvertTo(ref CoreDll.adSearchOptions searchOptions)
+        internal void ConvertTo(ref CoreDll.adSearchOptions searchOptions)
         {
             searchOptions.system = system ? CoreDll.TRUE : CoreDll.FALSE;
             searchOptions.hidden = hidden ? CoreDll.TRUE : CoreDll.FALSE;

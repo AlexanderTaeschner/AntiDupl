@@ -57,10 +57,10 @@ namespace AntiDupl.NET
         }
         private Type m_type;
         
-        private CoreDll.LocalActionType m_action;
-        private CoreDll.TargetType m_target;
+        private LocalActionType m_action;
+        private TargetType m_target;
 
-        private CoreDll.RenameCurrentType m_renameCurrentType;
+        private RenameCurrentType m_renameCurrentType;
         private string m_newFileName;
         private string m_directoryForMove;
 
@@ -95,7 +95,7 @@ namespace AntiDupl.NET
             Initialize(core, options, coreOptions, mainSplitContainer);
         }
 
-        public ProgressForm(CoreDll.LocalActionType action, CoreDll.TargetType target, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
+        public ProgressForm(LocalActionType action, TargetType target, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
         {
             m_type = Type.ApplyAction;
             m_action = action;
@@ -103,7 +103,7 @@ namespace AntiDupl.NET
             Initialize(core, options, coreOptions, mainSplitContainer);
         }
 
-        public ProgressForm(CoreDll.RenameCurrentType renameCurrentType, string newFileName, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
+        public ProgressForm(RenameCurrentType renameCurrentType, string newFileName, CoreLib core, Options options, CoreOptions coreOptions, MainSplitContainer mainSplitContainer)
         {
             m_type = Type.RenameCurrent; 
             m_renameCurrentType = renameCurrentType;
@@ -227,68 +227,68 @@ namespace AntiDupl.NET
                     {
                         m_updateResults = m_core.ApplyToResult(m_action, m_target);
                         m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
+                        m_core.Clear(FileType.Temporary);
                         break;
                     }
                 case Type.RenameCurrent:
                     {
                         m_updateResults = m_core.RenameCurrent(m_renameCurrentType, m_newFileName);
                         m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
+                        m_core.Clear(FileType.Temporary);
                         break;
                     }
                 case Type.MoveCurrentGroup:
                     {
                         m_updateResults = m_core.MoveCurrentGroup(m_directoryForMove);
                         m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
+                        m_core.Clear(FileType.Temporary);
                         break;
                     }
                 case Type.RenameCurrentGroupAs:
                     {
                         m_updateResults = m_core.RenameCurrentGroupAs(m_newFileName);
                         m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
+                        m_core.Clear(FileType.Temporary);
                         break;
                     }
                 case Type.RefreshResults:
                     {
-                        m_updateResults = m_core.ApplyToResult(CoreDll.GlobalActionType.Refresh);
+                        m_updateResults = m_core.ApplyToResult(GlobalActionType.Refresh);
                         m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
+                        m_core.Clear(FileType.Temporary);
                         break;
                     }
                case Type.Undo:
                     {
-                        m_updateResults = m_core.ApplyToResult(CoreDll.GlobalActionType.Undo);
+                        m_updateResults = m_core.ApplyToResult(GlobalActionType.Undo);
                         break;
                     }
                case Type.Redo:
                     {
-                        m_updateResults = m_core.ApplyToResult(CoreDll.GlobalActionType.Redo);
+                        m_updateResults = m_core.ApplyToResult(GlobalActionType.Redo);
                         break;
                     }
                case Type.LoadResults:
                     {
                         m_type = Type.ClearResults;
-                        m_core.Clear(CoreDll.FileType.Result);
+                        m_core.Clear(FileType.Result);
                         m_type = Type.ClearTemporary;
-                        m_core.Clear(CoreDll.FileType.Temporary);
+                        m_core.Clear(FileType.Temporary);
                         m_type = Type.LoadResults;
-                        m_core.Load(CoreDll.FileType.Result, m_options.GetResultsFileName(), m_options.checkResultsAtLoading);
+                        m_core.Load(FileType.Result, m_options.GetResultsFileName(), m_options.checkResultsAtLoading);
                         m_updateResults = true;
                         break;
                     }
                case Type.SaveResults:
                     {
-                        m_core.Save(CoreDll.FileType.Result, m_options.GetResultsFileName());
+                        m_core.Save(FileType.Result, m_options.GetResultsFileName());
                         m_updateResults = false;
                         break;
                     }
                case Type.ClearDatabase:
                     {
                         m_type = Type.LoadImages;
-                        m_core.Load(CoreDll.FileType.ImageDataBase, m_coreOptions.GetImageDataBasePath(), true);
+                        m_core.Load(FileType.ImageDataBase, m_coreOptions.GetImageDataBasePath(), true);
                         m_updateResults = false;
                         break;
                     }
@@ -344,26 +344,26 @@ namespace AntiDupl.NET
                                 case Type.ApplyAction:
                                     switch (m_action)
                                     {
-                                        case CoreDll.LocalActionType.DeleteDefect:
+                                        case LocalActionType.DeleteDefect:
                                             builder.Append(s.ProgressForm_DeleteDefect);
                                             break;
-                                        case CoreDll.LocalActionType.DeleteFirst:
+                                        case LocalActionType.DeleteFirst:
                                             builder.Append(s.ProgressForm_DeleteFirst);
                                             break;
-                                        case CoreDll.LocalActionType.DeleteSecond:
+                                        case LocalActionType.DeleteSecond:
                                             builder.Append(s.ProgressForm_DeleteSecond);
                                             break;
-                                        case CoreDll.LocalActionType.DeleteBoth:
+                                        case LocalActionType.DeleteBoth:
                                             builder.Append(s.ProgressForm_DeleteBoth);
                                             break;
-                                        case CoreDll.LocalActionType.PerformHint:
+                                        case LocalActionType.PerformHint:
                                             builder.Append(s.ProgressForm_PerformHint);
                                             break;
-                                        case CoreDll.LocalActionType.Mistake:
+                                        case LocalActionType.Mistake:
                                             builder.Append(s.ProgressForm_Mistake);
                                             break;
-                                        case CoreDll.LocalActionType.RenameFirstToSecond:
-                                        case CoreDll.LocalActionType.RenameSecondToFirst:
+                                        case LocalActionType.RenameFirstToSecond:
+                                        case LocalActionType.RenameSecondToFirst:
                                             builder.Append(s.ProgressForm_RenameCurrent);
                                             break;
                                     }
@@ -415,12 +415,12 @@ namespace AntiDupl.NET
                                     break;
                             }
 
-                            CoreStatus status = m_core.StatusGet(CoreDll.ThreadType.Main, 0);
+                            CoreStatus status = m_core.StatusGet(ThreadType.Main, 0);
                             if (status != null)
                             {
-                                double progress = status.total > 0 ? ((double)status.current) / status.total : 0;
+                                double progress = status.Total > 0 ? ((double)status.Current) / status.Total : 0;
                                 builder.AppendFormat(" ({0})...", ProgressUtils.GetProgressString(progress, m_startDateTime));
-                                m_progressPanel.UpdateStatus(status.total, status.current, status.current, status.path);
+                                m_progressPanel.UpdateStatus(status.Total, status.Current, status.Current, status.Path);
                             }
                             else
                             {

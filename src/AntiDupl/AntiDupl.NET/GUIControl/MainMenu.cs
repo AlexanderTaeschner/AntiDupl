@@ -472,8 +472,8 @@ namespace AntiDupl.NET
         {
             bool hasResults = m_core.GetResultSize() > 0;
 
-            m_edit_undoMenuItem.Enabled = m_core.CanApply(CoreDll.ActionEnableType.Undo);
-            m_edit_redoMenuItem.Enabled = m_core.CanApply(CoreDll.ActionEnableType.Redo);
+            m_edit_undoMenuItem.Enabled = m_core.CanApply(ActionEnableType.Undo);
+            m_edit_redoMenuItem.Enabled = m_core.CanApply(ActionEnableType.Redo);
             m_edit_selectAllMenuItem.Enabled = hasResults;
         }
     }

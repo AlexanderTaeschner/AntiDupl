@@ -397,7 +397,7 @@ namespace AntiDupl.NET
 
         public void SetDefault()
         {
-            sortTypeDefault = (int)CoreDll.SortType.ByDifference;
+            sortTypeDefault = (int)SortType.ByDifference;
             increasingDefault = true;
 
             splitterDistanceVerticalMaximized = MainSplitContainer.VIEW_MIN_WIDTH;

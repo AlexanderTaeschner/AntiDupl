@@ -117,21 +117,21 @@ DLLAPI adError adSearch(adEngineHandle handle)
 	return AD_OK;
 }
 
-template <class TChar> adError Load(adEngineHandle handle, adFileType fileType, const TChar *fileName, adBool check)
+DLLAPI adError adLoadW(adEngineHandle handle, adFileType fileType, const adCharW* fileName, adBool check)
 {
 	CHECK_HANDLE CHECK_ACCESS LOCK
 
-	ad::TString path(fileName != NULL ? fileName : (const TChar*)L"");
-	ad::TChar *pPath = path.size() > 0 ? (ad::TChar*)path.c_str() : NULL;
+	ad::TString path(fileName != NULL ? fileName : (const adCharW*)L"");
+	ad::TChar* pPath = path.size() > 0 ? (ad::TChar*)path.c_str() : NULL;
 
-	switch(fileType)
+	switch (fileType)
 	{
 	case AD_FILE_RESULT:
 		return handle->Result()->Load(pPath, check != FALSE);
 	case AD_FILE_MISTAKE_DATA_BASE:
 		return handle->MistakeStorage()->Load(pPath, check != FALSE);
 	case AD_FILE_IMAGE_DATA_BASE:
-		if(check)
+		if (check)
 			return handle->ImageDataStorage()->ClearDatabase(pPath);
 		else
 			return handle->ImageDataStorage()->Load(pPath);
@@ -140,19 +140,14 @@ template <class TChar> adError Load(adEngineHandle handle, adFileType fileType, 
 	}
 }
 
-DLLAPI adError adLoadW(adEngineHandle handle, adFileType fileType, const adCharW* fileName, adBool check)
-{
-	return Load(handle, fileType, fileName, check);
-}
-
-template <class TChar> adError Save(adEngineHandle handle, adFileType fileType, const TChar* fileName)
+DLLAPI adError adSaveW(adEngineHandle handle, adFileType fileType, const adCharW* fileName)
 {
 	CHECK_HANDLE CHECK_ACCESS LOCK
 
-	ad::TString path(fileName != NULL ? fileName : (const TChar*)L"");
-	ad::TChar *pPath = path.size() > 0 ? (ad::TChar*)path.c_str() : NULL;
+	ad::TString path(fileName != NULL ? fileName : (const adCharW*)L"");
+	ad::TChar* pPath = path.size() > 0 ? (ad::TChar*)path.c_str() : NULL;
 
-	switch(fileType)
+	switch (fileType)
 	{
 	case AD_FILE_RESULT:
 		return handle->Result()->Save(pPath);
@@ -163,11 +158,6 @@ template <class TChar> adError Save(adEngineHandle handle, adFileType fileType, 
 	default:
 		return AD_ERROR_INVALID_FILE_TYPE;
 	}
-}
-
-DLLAPI adError adSaveW(adEngineHandle handle, adFileType fileType, const adCharW* fileName)
-{
-	return Save(handle, fileType, fileName);
 }
 
 DLLAPI adError adClear(adEngineHandle handle, adFileType fileType)

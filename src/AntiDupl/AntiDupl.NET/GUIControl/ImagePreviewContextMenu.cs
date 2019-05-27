@@ -103,12 +103,12 @@ namespace AntiDupl.NET
             Items.Add(m_renameImageItem);
             if (RenameImageLikeNeighbourEnable())
             {
-                m_renameImageLikeNeighbourItem.Image = m_imagePreviewPanel.RenameCurrentType == CoreDll.RenameCurrentType.First ? Resources.Images.Get("RenameFirstLikeSecondVerticalMenu") : Resources.Images.Get("RenameSecondLikeFirstVerticalMenu");
+                m_renameImageLikeNeighbourItem.Image = m_imagePreviewPanel.RenameCurrentType == RenameCurrentType.First ? Resources.Images.Get("RenameFirstLikeSecondVerticalMenu") : Resources.Images.Get("RenameSecondLikeFirstVerticalMenu");
                 Items.Add(m_renameImageLikeNeighbourItem);
             }
             if (MoveToNeighbourEnable())
             {
-                m_moveImageToNeighbourItem.Image = m_imagePreviewPanel.RenameCurrentType == CoreDll.RenameCurrentType.First ? Resources.Images.Get("MoveFirstToSecondVerticalMenu") : Resources.Images.Get("MoveSecondToFirstVerticalMenu");
+                m_moveImageToNeighbourItem.Image = m_imagePreviewPanel.RenameCurrentType == RenameCurrentType.First ? Resources.Images.Get("MoveFirstToSecondVerticalMenu") : Resources.Images.Get("MoveSecondToFirstVerticalMenu");
                 Items.Add(m_moveImageToNeighbourItem);
                 Items.Add(m_moveImageAndRenameToNeighbourItem);
             }
@@ -204,10 +204,10 @@ namespace AntiDupl.NET
 
         private void RenameImageLikeNeighbour(object sender, EventArgs e)
         {
-            if (m_imagePreviewPanel.RenameCurrentType == CoreDll.RenameCurrentType.First)
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.RenameFirstLikeSecond, CoreDll.TargetType.Current);
+            if (m_imagePreviewPanel.RenameCurrentType == RenameCurrentType.First)
+                m_resultsListView.MakeAction(LocalActionType.RenameFirstLikeSecond, TargetType.Current);
             else
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.RenameSecondLikeFirst, CoreDll.TargetType.Current);
+                m_resultsListView.MakeAction(LocalActionType.RenameSecondLikeFirst, TargetType.Current);
         }
 
         /// <summary>
@@ -224,18 +224,18 @@ namespace AntiDupl.NET
 
         private void MoveImageToNeighbour(object sender, EventArgs e)
         {
-            if (m_imagePreviewPanel.RenameCurrentType == CoreDll.RenameCurrentType.First)
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveFirstToSecond, CoreDll.TargetType.Current);
+            if (m_imagePreviewPanel.RenameCurrentType == RenameCurrentType.First)
+                m_resultsListView.MakeAction(LocalActionType.MoveFirstToSecond, TargetType.Current);
             else
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveSecondToFirst, CoreDll.TargetType.Current);
+                m_resultsListView.MakeAction(LocalActionType.MoveSecondToFirst, TargetType.Current);
         }
 
         private void MoveAndRenameToNeighbour(object sender, EventArgs e)
         {
-            if (m_imagePreviewPanel.RenameCurrentType == CoreDll.RenameCurrentType.First)
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveAndRenameFirstToSecond, CoreDll.TargetType.Current);
+            if (m_imagePreviewPanel.RenameCurrentType == RenameCurrentType.First)
+                m_resultsListView.MakeAction(LocalActionType.MoveAndRenameFirstToSecond, TargetType.Current);
             else
-                m_resultsListView.MakeAction(CoreDll.LocalActionType.MoveAndRenameSecondToFirst, CoreDll.TargetType.Current);
+                m_resultsListView.MakeAction(LocalActionType.MoveAndRenameSecondToFirst, TargetType.Current);
         }
 
         /// <summary>

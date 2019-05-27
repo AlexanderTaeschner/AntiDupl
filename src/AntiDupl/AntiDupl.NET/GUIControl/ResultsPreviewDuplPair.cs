@@ -74,12 +74,12 @@ namespace AntiDupl.NET
             m_firstImagePreviewPanel = new ImagePreviewPanel(m_core, m_options, m_resultsListView, ImagePreviewPanel.Position.Top);
             m_secondImagePreviewPanel = new ImagePreviewPanel(m_core, m_options, m_resultsListView, ImagePreviewPanel.Position.Bottom);
 
-            m_deleteFirstButton = InitFactory.ToolButton.Create("DeleteFirstVerticalButton", CoreDll.LocalActionType.DeleteFirst, OnButtonClicked);
-            m_deleteSecondButton = InitFactory.ToolButton.Create("DeleteSecondVerticalButton", CoreDll.LocalActionType.DeleteSecond, OnButtonClicked);
-            m_deleteBothButton = InitFactory.ToolButton.Create("DeleteBothVerticalButton", CoreDll.LocalActionType.DeleteBoth, OnButtonClicked);
-            m_renameFirstToSecondButton = InitFactory.ToolButton.Create("RenameFirstToSecondVerticalButton", CoreDll.LocalActionType.RenameFirstToSecond, OnButtonClicked);
-            m_renameSecondToFirstButton = InitFactory.ToolButton.Create("RenameSecondToFirstVerticalButton", CoreDll.LocalActionType.RenameSecondToFirst, OnButtonClicked);
-            m_mistakeButton = InitFactory.ToolButton.Create("MistakeButton", CoreDll.LocalActionType.Mistake, OnButtonClicked);
+            m_deleteFirstButton = InitFactory.ToolButton.Create("DeleteFirstVerticalButton", LocalActionType.DeleteFirst, OnButtonClicked);
+            m_deleteSecondButton = InitFactory.ToolButton.Create("DeleteSecondVerticalButton", LocalActionType.DeleteSecond, OnButtonClicked);
+            m_deleteBothButton = InitFactory.ToolButton.Create("DeleteBothVerticalButton", LocalActionType.DeleteBoth, OnButtonClicked);
+            m_renameFirstToSecondButton = InitFactory.ToolButton.Create("RenameFirstToSecondVerticalButton", LocalActionType.RenameFirstToSecond, OnButtonClicked);
+            m_renameSecondToFirstButton = InitFactory.ToolButton.Create("RenameSecondToFirstVerticalButton", LocalActionType.RenameSecondToFirst, OnButtonClicked);
+            m_mistakeButton = InitFactory.ToolButton.Create("MistakeButton", LocalActionType.Mistake, OnButtonClicked);
             
            /* m_difrentNumericUpDown = new System.Windows.Forms.NumericUpDown();
             m_difrentNumericUpDown.Size = new System.Drawing.Size(62, 17);
@@ -148,22 +148,22 @@ namespace AntiDupl.NET
             return Color.FromArgb(A, R, G, B);
         }
 
-        private void SetHint(CoreDll.HintType hint)
+        private void SetHint(HintType hint)
         {
             RemoveHint();
             Color hintColor = MixColors(BackColor, 2, Color.Red, 1);
             switch (hint)
             {
-                case CoreDll.HintType.DeleteFirst:
+                case HintType.DeleteFirst:
                     m_deleteFirstButton.BackColor = hintColor;
                     break;
-                case CoreDll.HintType.DeleteSecond:
+                case HintType.DeleteSecond:
                     m_deleteSecondButton.BackColor = hintColor;
                     break;
-                case CoreDll.HintType.RenameFirstToSecond:
+                case HintType.RenameFirstToSecond:
                     m_renameFirstToSecondButton.BackColor = hintColor;
                     break;
-                case CoreDll.HintType.RenameSecondToFirst:
+                case HintType.RenameSecondToFirst:
                     m_renameSecondToFirstButton.BackColor = hintColor;
                     break;
             }
@@ -180,8 +180,8 @@ namespace AntiDupl.NET
         private void OnButtonClicked(object sender, System.EventArgs e)
         {
             ToolStripButton item = (ToolStripButton)sender;
-            CoreDll.LocalActionType action = (CoreDll.LocalActionType)item.Tag;
-            m_resultsListView.MakeAction(action, CoreDll.TargetType.Current);
+            LocalActionType action = (LocalActionType)item.Tag;
+            m_resultsListView.MakeAction(action, TargetType.Current);
         }
 
         private void OnImageDoubleClicked(object sender, System.EventArgs e)

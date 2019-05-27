@@ -1,7 +1,7 @@
 ﻿/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
-* Copyright (c) 2002-2018 Yermalayeu Ihar.
+* Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2018 Borisov Dmitry.
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy 
 * of this software and associated documentation files (the "Software"), to deal
@@ -21,29 +21,14 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 
 namespace AntiDupl.NET
 {
-    public class CoreGroup
+    public enum FileType : int
     {
-        public int id;
-        public CoreImageInfo[] images;
-
-        public Size sizeMax = new Size(0, 0);
-
-        internal CoreGroup(ref CoreDll.adGroup group, CoreLib core)
-        {
-            id = group.id.ToInt32();
-            images = core.GetImageInfo(id, 0, (uint)group.size);
-            for (int i = 0; i < images.Length; ++i)
-            {
-                sizeMax.Width = Math.Max(sizeMax.Width, (int)images[i].width);
-                sizeMax.Height = Math.Max(sizeMax.Height, (int)images[i].height);
-            }
-        }
+        Result = 1,
+        MistakeDataBase = 2,
+        ImageDataBase = 3,
+        Temporary = 4,
     }
 }

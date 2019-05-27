@@ -48,13 +48,13 @@ namespace AntiDupl.NET
             path = pathWithSubFolder.path;
         }
 
-        public CorePathWithSubFolder(ref CoreDll.adPathWithSubFolderW pathWithSubFolder)
+        internal CorePathWithSubFolder(ref CoreDll.adPathWithSubFolderW pathWithSubFolder)
         {
             enableSubFolder = pathWithSubFolder.enableSubFolder != CoreDll.FALSE;
             path = pathWithSubFolder.path;
         }
 
-        public void ConvertTo(ref CoreDll.adPathWithSubFolderW pathWithSubFolder)
+        internal void ConvertTo(ref CoreDll.adPathWithSubFolderW pathWithSubFolder)
         {
             pathWithSubFolder.enableSubFolder = enableSubFolder ? CoreDll.TRUE : CoreDll.FALSE;
             pathWithSubFolder.path = path;

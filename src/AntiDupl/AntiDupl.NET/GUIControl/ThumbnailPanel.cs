@@ -190,7 +190,7 @@ namespace AntiDupl.NET
 
             m_fileSizeLabel.Text = info.GetFileSizeString();
             m_imageSizeLabel.Text = string.Format("{0}×{1}", info.width, info.height);
-            m_imageTypeLabel.Text = (info.type == CoreDll.ImageType.None ? "   " : info.GetImageTypeString());
+            m_imageTypeLabel.Text = (info.type == ImageType.None ? "   " : info.GetImageTypeString());
             m_fileNameLabel.Text = Path.GetFileNameWithoutExtension(info.path);
 
             bool[] selected = m_core.GetSelection(m_group.id, (uint)m_index, 1);
@@ -201,11 +201,11 @@ namespace AntiDupl.NET
         {
             if (m_checkBox.Checked)
             {
-                m_core.SetSelection(m_group.id, m_index, CoreDll.SelectionType.SelectCurrent);
+                m_core.SetSelection(m_group.id, m_index, SelectionType.SelectCurrent);
             }
             else
             {
-                m_core.SetSelection(m_group.id, m_index, CoreDll.SelectionType.UnselectCurrent);
+                m_core.SetSelection(m_group.id, m_index, SelectionType.UnselectCurrent);
             }
             m_thumbnailGroupPanel.Table.ChangeCurrentThumbnail(m_group, m_index);
         }

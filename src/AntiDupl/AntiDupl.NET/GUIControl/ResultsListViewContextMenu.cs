@@ -68,20 +68,20 @@ namespace AntiDupl.NET
         {
             RenderMode = ToolStripRenderMode.System;
 
-            m_deleteDefectItem = InitFactory.MenuItem.Create("DeleteDefectsVerticalMenu", CoreDll.LocalActionType.DeleteDefect, MakeAction);
-            m_deleteFirstItem = InitFactory.MenuItem.Create("DeleteFirstsVerticalMenu", CoreDll.LocalActionType.DeleteFirst, MakeAction);
-            m_deleteSecondItem = InitFactory.MenuItem.Create("DeleteSecondsVerticalMenu", CoreDll.LocalActionType.DeleteSecond, MakeAction);
-            m_deleteBothItem = InitFactory.MenuItem.Create("DeleteBothesVerticalMenu", CoreDll.LocalActionType.DeleteBoth, MakeAction);
+            m_deleteDefectItem = InitFactory.MenuItem.Create("DeleteDefectsVerticalMenu", LocalActionType.DeleteDefect, MakeAction);
+            m_deleteFirstItem = InitFactory.MenuItem.Create("DeleteFirstsVerticalMenu", LocalActionType.DeleteFirst, MakeAction);
+            m_deleteSecondItem = InitFactory.MenuItem.Create("DeleteSecondsVerticalMenu", LocalActionType.DeleteSecond, MakeAction);
+            m_deleteBothItem = InitFactory.MenuItem.Create("DeleteBothesVerticalMenu", LocalActionType.DeleteBoth, MakeAction);
 
-            m_renameFirstToSecond = InitFactory.MenuItem.Create("RenameFirstToSecondVerticalMenu", CoreDll.LocalActionType.RenameFirstToSecond, MakeAction);
-            m_renameSecondToFirst = InitFactory.MenuItem.Create("RenameSecondToFirstVerticalMenu", CoreDll.LocalActionType.RenameSecondToFirst, MakeAction);
-            m_renameFirstLikeSecond = InitFactory.MenuItem.Create("RenameFirstLikeSecondVerticalMenu", CoreDll.LocalActionType.RenameFirstLikeSecond, MakeAction);
-            m_renameSecondLikeFirst = InitFactory.MenuItem.Create("RenameSecondLikeFirstVerticalMenu", CoreDll.LocalActionType.RenameSecondLikeFirst, MakeAction);
-            m_moveFirstToSecond = InitFactory.MenuItem.Create("MoveFirstToSecondVerticalMenu", CoreDll.LocalActionType.MoveFirstToSecond, MakeAction);
-            m_moveSecondToFirst = InitFactory.MenuItem.Create("MoveSecondToFirstVerticalMenu", CoreDll.LocalActionType.MoveSecondToFirst, MakeAction);
+            m_renameFirstToSecond = InitFactory.MenuItem.Create("RenameFirstToSecondVerticalMenu", LocalActionType.RenameFirstToSecond, MakeAction);
+            m_renameSecondToFirst = InitFactory.MenuItem.Create("RenameSecondToFirstVerticalMenu", LocalActionType.RenameSecondToFirst, MakeAction);
+            m_renameFirstLikeSecond = InitFactory.MenuItem.Create("RenameFirstLikeSecondVerticalMenu", LocalActionType.RenameFirstLikeSecond, MakeAction);
+            m_renameSecondLikeFirst = InitFactory.MenuItem.Create("RenameSecondLikeFirstVerticalMenu", LocalActionType.RenameSecondLikeFirst, MakeAction);
+            m_moveFirstToSecond = InitFactory.MenuItem.Create("MoveFirstToSecondVerticalMenu", LocalActionType.MoveFirstToSecond, MakeAction);
+            m_moveSecondToFirst = InitFactory.MenuItem.Create("MoveSecondToFirstVerticalMenu", LocalActionType.MoveSecondToFirst, MakeAction);
 
-            m_performHintItem = InitFactory.MenuItem.Create("PerformHintMenu", CoreDll.LocalActionType.PerformHint, MakeAction);
-            m_mistakeItem = InitFactory.MenuItem.Create("MistakesMenu", CoreDll.LocalActionType.Mistake, MakeAction);
+            m_performHintItem = InitFactory.MenuItem.Create("PerformHintMenu", LocalActionType.PerformHint, MakeAction);
+            m_mistakeItem = InitFactory.MenuItem.Create("MistakesMenu", LocalActionType.Mistake, MakeAction);
 
             Opening += new CancelEventHandler(OnOpening);
             m_mainSplitContainer.OnUpdateResults += new MainSplitContainer.UpdateResultsHandler(UpdateResults);
@@ -115,12 +115,12 @@ namespace AntiDupl.NET
 
             if (m_mainSplitContainer.resultsListView.GetTotalResultCount() > 0)
             {
-                if (m_core.CanApply(CoreDll.ActionEnableType.Defect))
+                if (m_core.CanApply(ActionEnableType.Defect))
                 {
                     Items.Add(m_deleteDefectItem);
                     Items.Add(new ToolStripSeparator());
                 }
-                if (m_core.CanApply(CoreDll.ActionEnableType.DuplPair)) //проверяется тип результата в выделенных
+                if (m_core.CanApply(ActionEnableType.DuplPair)) //проверяется тип результата в выделенных
                 {
                     Items.Add(m_deleteFirstItem);
                     Items.Add(m_deleteSecondItem);
@@ -137,12 +137,12 @@ namespace AntiDupl.NET
                     }
                     Items.Add(new ToolStripSeparator());
                 }
-                if (m_core.CanApply(CoreDll.ActionEnableType.PerformHint))
+                if (m_core.CanApply(ActionEnableType.PerformHint))
                 {
                     Items.Add(m_performHintItem);
                     Items.Add(new ToolStripSeparator());
                 }
-                if (m_core.CanApply(CoreDll.ActionEnableType.Any))
+                if (m_core.CanApply(ActionEnableType.Any))
                 {
                     Items.Add(m_mistakeItem);
                 }
@@ -152,8 +152,8 @@ namespace AntiDupl.NET
         private void MakeAction(object sender, EventArgs e)
         {
             ToolStripItem item = (ToolStripItem)sender;
-            CoreDll.LocalActionType action = (CoreDll.LocalActionType)item.Tag;
-            m_mainSplitContainer.resultsListView.MakeAction(action, CoreDll.TargetType.Selected);
+            LocalActionType action = (LocalActionType)item.Tag;
+            m_mainSplitContainer.resultsListView.MakeAction(action, TargetType.Selected);
         }
 
         private void UpdateResults()

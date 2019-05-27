@@ -21,25 +21,75 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AntiDupl.NET
 {
     public class CoreStatus
     {
-        public CoreDll.StateType state;
-        public string path;
-        public int current;
-        public int total;
+        private readonly object _criticalSection = new object();
+        private readonly Dictionary<int, CoreStatus> _collectThreadStatuses =
+            new Dictionary<int, CoreStatus>();
+        private readonly Dictionary<int, CoreStatus> _compareThreadStatuses =
+            new Dictionary<int, CoreStatus>();
+        
+        public string Path { get; }
+        public int Current { get; }
+        public int Total { get; }
 
-        public CoreStatus(ref CoreDll.adStatusW status)
+        internal StateType State { get; }
+
+        internal CoreStatus(ref CoreDll.adStatusW status)
         {
-            state = status.state;
-            path = status.path;
-            current = (int)status.current.ToUInt32();
-            total = (int)status.total.ToUInt32();
+            State = status.state;
+            Path = status.path;
+            Current = (int)status.current.ToUInt32();
+            Total = (int)status.total.ToUInt32();
+        }
+
+        internal CoreStatus()
+        {
+        }
+
+        internal CoreStatus(CoreStatus status)
+        {
+            State = status.State;
+            Path = status.Path;
+            Current = status.Current;
+            Total = status.Total;
+        }
+
+        internal Error Export(ThreadType threadType, int threadId, out CoreStatus? status)
+        {
+            status = null;
+
+            lock (_criticalSection)
+            {
+                switch (threadType)
+                {
+                    case ThreadType.Main:
+                        status = new CoreStatus(this);
+                        break;
+                    case ThreadType.Collect:
+                        if (!_collectThreadStatuses.TryGetValue(threadId, out var threadStatus))
+                        {
+                            return Error.InvalidThreadId;
+                        }
+
+                        status = new CoreStatus(threadStatus);
+                        break;
+                    case ThreadType.Compare:
+                        if (!_compareThreadStatuses.TryGetValue(threadId, out threadStatus))
+                        {
+                            return Error.InvalidThreadId;
+                        }
+
+                        status = new CoreStatus(threadStatus);
+                        break;
+                }
+
+                return Error.Ok;
+            }
         }
     }
 }

@@ -29,17 +29,17 @@ namespace AntiDupl.NET
 {
     public class CoreCompareOptions
     {
-        public bool checkOnEquality;
-        public bool transformedImage;
-        public bool sizeControl;
-        public bool typeControl;
-        public bool ratioControl;
-        public int thresholdDifference;
-        public int minimalImageSize;
-        public int maximalImageSize;
-        public bool compareInsideOneFolder;
-        public bool compareInsideOneSearchPath;
-        public CoreDll.AlgorithmComparing algorithmComparing;
+        public bool checkOnEquality { get; set; }
+        public bool transformedImage { get; set; }
+        public bool sizeControl { get; set; }
+        public bool typeControl { get; set; }
+        public bool ratioControl { get; set; }
+        public int thresholdDifference { get; set; }
+        public int minimalImageSize { get; set; }
+        public int maximalImageSize { get; set; }
+        public bool compareInsideOneFolder { get; set; }
+        public bool compareInsideOneSearchPath { get; set; }
+        public AlgorithmComparing algorithmComparing { get; set; }
 
         public CoreCompareOptions()
         {
@@ -60,7 +60,7 @@ namespace AntiDupl.NET
             compareInsideOneSearchPath = compareOptions.compareInsideOneSearchPath;
         }
 
-        public CoreCompareOptions(ref CoreDll.adCompareOptions compareOptions)
+        internal CoreCompareOptions(ref CoreDll.adCompareOptions compareOptions)
         {
             checkOnEquality = compareOptions.checkOnEquality != CoreDll.FALSE;
             transformedImage = compareOptions.transformedImage != CoreDll.FALSE;
@@ -75,7 +75,7 @@ namespace AntiDupl.NET
             compareInsideOneSearchPath = compareOptions.compareInsideOneSearchPath != CoreDll.FALSE;
         }
 
-        public void ConvertTo(ref CoreDll.adCompareOptions compareOptions)
+        internal void ConvertTo(ref CoreDll.adCompareOptions compareOptions)
         {
             compareOptions.checkOnEquality = checkOnEquality ? CoreDll.TRUE : CoreDll.FALSE;
             compareOptions.transformedImage = transformedImage ? CoreDll.TRUE : CoreDll.FALSE;
