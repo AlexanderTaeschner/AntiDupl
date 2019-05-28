@@ -5,7 +5,7 @@ namespace AntiDuplLib
 {
     internal class Engine
     {
-        private string _userPath;
+        private readonly string _userPath;
 
         public Engine(string userPath) => _userPath = userPath;
 

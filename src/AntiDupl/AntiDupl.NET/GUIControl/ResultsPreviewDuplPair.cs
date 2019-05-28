@@ -1,4 +1,4 @@
-/*
+п»ї/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -33,7 +33,7 @@ using System.Threading;
 namespace AntiDupl.NET
 {
     /// <summary>
-    /// Панель которая включает в себя две панели с просмотра изображений и панель инструментов для работы с дубликатами изображений.
+    /// ГЏГ Г­ГҐГ«Гј ГЄГ®ГІГ®Г°Г Гї ГўГЄГ«ГѕГ·Г ГҐГІ Гў Г±ГҐГЎГї Г¤ГўГҐ ГЇГ Г­ГҐГ«ГЁ Г± ГЇГ°Г®Г±Г¬Г®ГІГ°Г  ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГ© ГЁ ГЇГ Г­ГҐГ«Гј ГЁГ­Г±ГІГ°ГіГ¬ГҐГ­ГІГ®Гў Г¤Г«Гї Г°Г ГЎГ®ГІГ» Г± Г¤ГіГЎГ«ГЁГЄГ ГІГ Г¬ГЁ ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГ©.
     /// </summary>
     public class ResultsPreviewDuplPair : ResultsPreviewBase
     {
@@ -121,7 +121,7 @@ namespace AntiDupl.NET
             m_renameSecondToFirstButton.ToolTipText = GetToolTip(s.ResultsPreviewDuplPair_RenameSecondToFirstButton_ToolTip_Text, HotKeyOptions.Action.CurrentDuplPairRenameSecondToFirst);
             m_mistakeButton.ToolTipText = GetToolTip(s.ResultsPreviewDefect_MistakeButton_ToolTip_Text, HotKeyOptions.Action.CurrentMistake);
 
-            // Для обновления EXIF.
+            // Г„Г«Гї Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї EXIF.
             if (m_currentSearchResult != null)
             {
                 m_firstImagePreviewPanel.UpdateExifTooltip(m_currentSearchResult);
@@ -194,7 +194,7 @@ namespace AntiDupl.NET
 
         private void OnOptionsChanged()
         {
-            m_mistakeButton.Enabled = m_coreOptions.advancedOptions.mistakeDataBase;
+            m_mistakeButton.Enabled = m_coreOptions.advancedOptions.MistakeDataBase;
         }
 
         protected override void AddItems(ResultsOptions.ViewMode viewMode)
@@ -328,7 +328,7 @@ namespace AntiDupl.NET
 
         private void HighlightCompleteEventHandler(List<Rectangle> rectangles)
         {
-            if (InvokeRequired) // Проверяем в этом ли потоке нахождится созданый обьект 
+            if (InvokeRequired) // ГЏГ°Г®ГўГҐГ°ГїГҐГ¬ Гў ГЅГІГ®Г¬ Г«ГЁ ГЇГ®ГІГ®ГЄГҐ Г­Г ГµГ®Г¦Г¤ГЁГІГ±Гї Г±Г®Г§Г¤Г Г­Г»Г© Г®ГЎГјГҐГЄГІ 
             {
                 object[] eventArgs = { rectangles };
                 Invoke(new HighlightCompleteDelegate(HighlightCompleteEventHandler), eventArgs);

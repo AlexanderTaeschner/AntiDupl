@@ -29,15 +29,15 @@ namespace AntiDupl.NET
 {
     public class CoreAdvancedOptions
     {
-        public bool deleteToRecycleBin { get; set; }
-        public bool mistakeDataBase { get; set; }
-        public int ratioResolution { get; set; }
-        public int compareThreadCount { get; set; }
-        public int collectThreadCount { get; set; }
-        public int reducedImageSize { get; set; }
-        public int undoQueueSize { get; set; }
-        public int resultCountMax { get; set; }
-        public int ignoreFrameWidth { get; set; }
+        public bool DeleteToRecycleBin { get; set; }
+        public bool MistakeDataBase { get; set; }
+        public int RatioResolution { get; set; }
+        public int CompareThreadCount { get; set; }
+        public int CollectThreadCount { get; set; }
+        public int ReducedImageSize { get; set; }
+        public int UndoQueueSize { get; set; }
+        public int ResultCountMax { get; set; }
+        public int IgnoreFrameWidth { get; set; }
 
         public CoreAdvancedOptions()
         {
@@ -45,41 +45,41 @@ namespace AntiDupl.NET
 
         public CoreAdvancedOptions(CoreAdvancedOptions advancedOptions)
         {
-            deleteToRecycleBin = advancedOptions.deleteToRecycleBin;
-            mistakeDataBase = advancedOptions.mistakeDataBase;
-            ratioResolution = advancedOptions.ratioResolution;
-            compareThreadCount = advancedOptions.compareThreadCount;
-            collectThreadCount = advancedOptions.collectThreadCount;
-            reducedImageSize = advancedOptions.reducedImageSize;
-            undoQueueSize = advancedOptions.undoQueueSize;
-            resultCountMax = advancedOptions.resultCountMax;
-            ignoreFrameWidth = advancedOptions.ignoreFrameWidth;
+            DeleteToRecycleBin = advancedOptions.DeleteToRecycleBin;
+            MistakeDataBase = advancedOptions.MistakeDataBase;
+            RatioResolution = advancedOptions.RatioResolution;
+            CompareThreadCount = advancedOptions.CompareThreadCount;
+            CollectThreadCount = advancedOptions.CollectThreadCount;
+            ReducedImageSize = advancedOptions.ReducedImageSize;
+            UndoQueueSize = advancedOptions.UndoQueueSize;
+            ResultCountMax = advancedOptions.ResultCountMax;
+            IgnoreFrameWidth = advancedOptions.IgnoreFrameWidth;
         }
 
         internal CoreAdvancedOptions(ref CoreDll.adAdvancedOptions advancedOptions)
         {
-            deleteToRecycleBin = advancedOptions.deleteToRecycleBin != CoreDll.FALSE;
-            mistakeDataBase = advancedOptions.mistakeDataBase != CoreDll.FALSE;
-            ratioResolution = advancedOptions.ratioResolution;
-            compareThreadCount = advancedOptions.compareThreadCount;
-            collectThreadCount = advancedOptions.collectThreadCount;
-            reducedImageSize = advancedOptions.reducedImageSize;
-            undoQueueSize = advancedOptions.undoQueueSize;
-            resultCountMax = advancedOptions.resultCountMax;
-            ignoreFrameWidth = advancedOptions.ignoreFrameWidth;
+            DeleteToRecycleBin = advancedOptions.deleteToRecycleBin != CoreDll.FALSE;
+            MistakeDataBase = advancedOptions.mistakeDataBase != CoreDll.FALSE;
+            RatioResolution = advancedOptions.ratioResolution;
+            CompareThreadCount = advancedOptions.compareThreadCount;
+            CollectThreadCount = advancedOptions.collectThreadCount;
+            ReducedImageSize = advancedOptions.reducedImageSize;
+            UndoQueueSize = advancedOptions.undoQueueSize;
+            ResultCountMax = advancedOptions.resultCountMax;
+            IgnoreFrameWidth = advancedOptions.ignoreFrameWidth;
         }
 
         internal void ConvertTo(ref CoreDll.adAdvancedOptions advancedOptions)
         {
-            advancedOptions.deleteToRecycleBin = deleteToRecycleBin ? CoreDll.TRUE : CoreDll.FALSE;
-            advancedOptions.mistakeDataBase = mistakeDataBase ? CoreDll.TRUE : CoreDll.FALSE;
-            advancedOptions.ratioResolution = ratioResolution;
-            advancedOptions.compareThreadCount = compareThreadCount;
-            advancedOptions.collectThreadCount = collectThreadCount;
-            advancedOptions.reducedImageSize = reducedImageSize;
-            advancedOptions.undoQueueSize = undoQueueSize;
-            advancedOptions.resultCountMax = resultCountMax;
-            advancedOptions.ignoreFrameWidth = ignoreFrameWidth;
+            advancedOptions.deleteToRecycleBin = DeleteToRecycleBin ? CoreDll.TRUE : CoreDll.FALSE;
+            advancedOptions.mistakeDataBase = MistakeDataBase ? CoreDll.TRUE : CoreDll.FALSE;
+            advancedOptions.ratioResolution = RatioResolution;
+            advancedOptions.compareThreadCount = CompareThreadCount;
+            advancedOptions.collectThreadCount = CollectThreadCount;
+            advancedOptions.reducedImageSize = ReducedImageSize;
+            advancedOptions.undoQueueSize = UndoQueueSize;
+            advancedOptions.resultCountMax = ResultCountMax;
+            advancedOptions.ignoreFrameWidth = IgnoreFrameWidth;
         }
 
         public CoreAdvancedOptions Clone()
@@ -90,15 +90,15 @@ namespace AntiDupl.NET
         public bool Equals(CoreAdvancedOptions advancedOptions)
         {
             return
-                deleteToRecycleBin == advancedOptions.deleteToRecycleBin &&
-                mistakeDataBase == advancedOptions.mistakeDataBase &&
-                ratioResolution == advancedOptions.ratioResolution &&
-                compareThreadCount == advancedOptions.compareThreadCount &&
-                collectThreadCount == advancedOptions.collectThreadCount &&
-                reducedImageSize == advancedOptions.reducedImageSize &&
-                undoQueueSize == advancedOptions.undoQueueSize &&
-                resultCountMax == advancedOptions.resultCountMax &&
-                ignoreFrameWidth == advancedOptions.ignoreFrameWidth;
+                DeleteToRecycleBin == advancedOptions.DeleteToRecycleBin &&
+                MistakeDataBase == advancedOptions.MistakeDataBase &&
+                RatioResolution == advancedOptions.RatioResolution &&
+                CompareThreadCount == advancedOptions.CompareThreadCount &&
+                CollectThreadCount == advancedOptions.CollectThreadCount &&
+                ReducedImageSize == advancedOptions.ReducedImageSize &&
+                UndoQueueSize == advancedOptions.UndoQueueSize &&
+                ResultCountMax == advancedOptions.ResultCountMax &&
+                IgnoreFrameWidth == advancedOptions.IgnoreFrameWidth;
         }
     }
 }

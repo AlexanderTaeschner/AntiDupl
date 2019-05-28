@@ -114,13 +114,13 @@ namespace AntiDupl.NET
             if (currentImageInfo != null)
             {
                 StopAnimate();
-                if (m_currentImageInfo.type != ImageType.None)
+                if (m_currentImageInfo.Type != ImageType.None)
                 {
-                    if (m_currentImageInfo.path.Length < MAX_PATH && m_currentImageInfo.type <= ImageType.Icon)
+                    if (m_currentImageInfo.Path.Length < MAX_PATH && m_currentImageInfo.Type <= ImageType.Icon)
                     {
                         try
                         {
-                            if (LoadFileToMemoryStream(ref m_memoryStream, m_currentImageInfo.path))
+                            if (LoadFileToMemoryStream(ref m_memoryStream, m_currentImageInfo.Path))
                             {
                                 m_bitmap = new Bitmap(m_memoryStream);
                                 m_animationEnable = ImageAnimator.CanAnimate(m_bitmap);
@@ -231,7 +231,7 @@ namespace AntiDupl.NET
         private void OnImageDoubleClicked(object sender, System.EventArgs e)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = m_currentImageInfo.path;
+            startInfo.FileName = m_currentImageInfo.Path;
             try
             {
                 Process.Start(startInfo);
@@ -266,8 +266,8 @@ namespace AntiDupl.NET
                 int horizontalPosition = 0, verticalPosition = 0;
                 int clientWidth = ClientSize.Width;
                 int clientHeight = ClientSize.Height;
-                int currentWidth = (int)m_currentImageInfo.width;
-                int currentHeight = (int)m_currentImageInfo.height;
+                int currentWidth = (int)m_currentImageInfo.Width;
+                int currentHeight = (int)m_currentImageInfo.Height;
                 int targetWidth = 100;
                 int targetHeight = 100;
                 if (currentWidth > 0 && currentHeight > 0)
@@ -477,7 +477,7 @@ namespace AntiDupl.NET
                 if (forceLoad)
                 {
                     CleanNeighbours();
-                    GetNeighboursFileNames(m_currentImageInfo.path, ref m_prevFile, ref m_nextFile);
+                    GetNeighboursFileNames(m_currentImageInfo.Path, ref m_prevFile, ref m_nextFile);
                 }
                 if (m_prevFile != null)
                     m_prevBitmap = GetBitmap(m_prevFile);

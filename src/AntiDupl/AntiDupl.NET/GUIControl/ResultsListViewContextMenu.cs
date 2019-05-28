@@ -1,4 +1,4 @@
-/*
+п»ї/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -31,7 +31,7 @@ using System.ComponentModel;
 namespace AntiDupl.NET
 {
     /// <summary>
-    /// Контекстное меню для списка дубликатов.
+    /// ГЉГ®Г­ГІГҐГЄГ±ГІГ­Г®ГҐ Г¬ГҐГ­Гѕ Г¤Г«Гї Г±ГЇГЁГ±ГЄГ  Г¤ГіГЎГ«ГЁГЄГ ГІГ®Гў.
     /// </summary>
     public class ResultsListViewContextMenu : ContextMenuStrip
     {
@@ -120,7 +120,7 @@ namespace AntiDupl.NET
                     Items.Add(m_deleteDefectItem);
                     Items.Add(new ToolStripSeparator());
                 }
-                if (m_core.CanApply(ActionEnableType.DuplPair)) //проверяется тип результата в выделенных
+                if (m_core.CanApply(ActionEnableType.DuplPair)) //ГЇГ°Г®ГўГҐГ°ГїГҐГІГ±Гї ГІГЁГЇ Г°ГҐГ§ГіГ«ГјГІГ ГІГ  Гў ГўГ»Г¤ГҐГ«ГҐГ­Г­Г»Гµ
                 {
                     Items.Add(m_deleteFirstItem);
                     Items.Add(m_deleteSecondItem);
@@ -171,7 +171,7 @@ namespace AntiDupl.NET
 
         private void OnOptionsChanged()
         {
-            m_mistakeItem.Enabled = m_coreOptions.advancedOptions.mistakeDataBase;
+            m_mistakeItem.Enabled = m_coreOptions.advancedOptions.MistakeDataBase;
         }
         
         public void SetViewMode(ResultsOptions.ViewMode viewMode)

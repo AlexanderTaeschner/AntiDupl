@@ -1,4 +1,4 @@
-/*
+﻿/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -340,7 +340,7 @@ namespace AntiDupl.NET
                 total = mainThreadStatus.Total;
                 if(mainThreadStatus.Current > 0)
                 {
-                    if(m_coreOptions.compareOptions.checkOnEquality)
+                    if(m_coreOptions.compareOptions.CheckOnEquality)
                     {
                         for(int i = 0; ; i++)
                         {

@@ -44,7 +44,7 @@ namespace AntiDupl.NET
 
         static private string CreateIfNotExists(string path)
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+            var directoryInfo = new DirectoryInfo(path);
             if (!directoryInfo.Exists)
             {
                 directoryInfo.Create();
@@ -71,20 +71,20 @@ namespace AntiDupl.NET
         {
             static public Image GetNullImage()
             {
-                Bitmap bitmap = new Bitmap(1, 1);
+                var bitmap = new Bitmap(1, 1);
                 bitmap.SetPixel(0, 0, Color.FromArgb(0, 0, 0, 0));
                 return bitmap;
             }
 
             static public Image GetImageWithBlackCircle(int width, int height, double radius)
             {
-                Bitmap bitmap = new Bitmap(width, height);
-                for (int x = 0; x < width; x++)
+                var bitmap = new Bitmap(width, height);
+                for (var x = 0; x < width; x++)
                 {
-                    int xx = x - width / 2;
-                    for (int y = 0; y < height; y++)
+                    var xx = x - width / 2;
+                    for (var y = 0; y < height; y++)
                     {
-                        int yy = y - height / 2;
+                        var yy = y - height / 2;
                         if (xx * xx + yy * yy < radius * radius)
                         {
                             bitmap.SetPixel(x, y, Color.FromArgb(0xFF, 0, 0, 0));
@@ -119,15 +119,15 @@ namespace AntiDupl.NET
 
         static public class Icons
         {
-            static public Icon Get(Size size)
+            static public Icon? Get(Size size)
             {
-                Icon icon = Get();
+                var icon = Get();
                 return new Icon(icon, size);
             }
 
-            static public Icon Get()
+            static public Icon? Get()
             {
-                Icon icon = null;
+                Icon? icon = null;
                 try
                 {
                     icon = new Icon(GetPath(Path, "Icon", Extension));
@@ -165,16 +165,16 @@ namespace AntiDupl.NET
                 m_strings.Add(StringsDefaultEnglish.Get());
                 m_strings.Add(StringsDefaultRussian.Get());
 
-                DirectoryInfo directoryInfo = new DirectoryInfo(Path);
+                var directoryInfo = new DirectoryInfo(Path);
                 if (directoryInfo.Exists)
                 {
                     FileInfo[] fileInfos = directoryInfo.GetFiles(Filter, SearchOption.TopDirectoryOnly);
-                    for (int i = 0; i < fileInfos.Length; i++)
+                    for (var i = 0; i < fileInfos.Length; i++)
                     {
-                        AntiDupl.NET.Strings strings = Load(fileInfos[i].FullName);
+                        var strings = Load(fileInfos[i].FullName);
                         if(strings != null)
                         {
-                            string name = System.IO.Path.GetFileNameWithoutExtension(fileInfos[i].FullName);
+                            var name = System.IO.Path.GetFileNameWithoutExtension(fileInfos[i].FullName);
                             if (name.CompareTo(StringsDefaultRussian.Get().Name) != 0 &&
                                 name.CompareTo(StringsDefaultEnglish.Get().Name) != 0)
                             {
@@ -198,14 +198,14 @@ namespace AntiDupl.NET
             
             static private AntiDupl.NET.Strings Load(string path)
             {
-                FileInfo fileInfo = new FileInfo(path);
+                var fileInfo = new FileInfo(path);
                 if (fileInfo.Exists)
                 {
                     try
                     {
-                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(AntiDupl.NET.Strings));
-                        FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-                        AntiDupl.NET.Strings strings = (AntiDupl.NET.Strings)xmlSerializer.Deserialize(fileStream);
+                        var xmlSerializer = new XmlSerializer(typeof(AntiDupl.NET.Strings));
+                        var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
+                        var strings = (AntiDupl.NET.Strings)xmlSerializer.Deserialize(fileStream);
                         fileStream.Close();
                         return strings;
                     }
@@ -226,7 +226,7 @@ namespace AntiDupl.NET
                 {
 
                     TextWriter writer = new StreamWriter(GetPath(Path, strings.Name, Extension));
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(AntiDupl.NET.Strings));
+                    var xmlSerializer = new XmlSerializer(typeof(AntiDupl.NET.Strings));
                     xmlSerializer.Serialize(writer, strings);
                     writer.Close();
                 }
@@ -304,14 +304,14 @@ namespace AntiDupl.NET
             
             public static bool SetCurrent(string name)
             {
-                for(int i = 0; i < Count; i++)
+                for(var i = 0; i < Count; i++)
                 {
                     if(Get(i).Name.CompareTo(name) == 0)
                     {
                         return SetCurrent(i);
                     }
                 }
-                for(int i = 0; i < Count; i++)
+                for(var i = 0; i < Count; i++)
                 {
                     if(Get(i).Name.CompareTo(StringsDefaultEnglish.Get().Name) == 0)
                     {
@@ -338,7 +338,7 @@ namespace AntiDupl.NET
                     Current.Name.CompareTo("Ukrainian") == 0;
             }
             
-            private static ArrayList m_strings = new ArrayList();
+            private static readonly ArrayList m_strings = new ArrayList();
             private static int m_currentIndex = 0;
 
             public static void Update()
@@ -381,7 +381,7 @@ namespace AntiDupl.NET
         {        
             static private string GetUrl(string page)
             {
-                StringBuilder builder = new StringBuilder(WebLinks.GithubComAntidupl);
+                var builder = new StringBuilder(WebLinks.GithubComAntidupl);
                 builder.Append("/data/help");
                 if (Strings.IsCurrentRussianFamily())
                 {
@@ -403,7 +403,7 @@ namespace AntiDupl.NET
 
             private class Starter
             {
-                private string m_url;
+                private readonly string m_url;
 
                 public Starter(Form form, string url)
                 {
@@ -424,11 +424,11 @@ namespace AntiDupl.NET
                 {
                     if (url.Substring(0, 4).ToUpper() != "HTTP")
                     {
-                        string keyName = @"HTTP\shell\open\command";
-                        Microsoft.Win32.RegistryKey registryKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(keyName, false);
+                        var keyName = @"HTTP\shell\open\command";
+                        var registryKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(keyName, false);
                         if (registryKey != null)
                         {
-                            string defaultBrouserPath = ((string)registryKey.GetValue(null, null)).Split('"')[1];
+                            var defaultBrouserPath = ((string)registryKey.GetValue(null, null)).Split('"')[1];
                             Process.Start(defaultBrouserPath, url);
                         }
                     }

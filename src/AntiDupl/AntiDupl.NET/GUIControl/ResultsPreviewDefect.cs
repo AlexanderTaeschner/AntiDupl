@@ -1,4 +1,4 @@
-/*
+п»ї/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar.
@@ -31,7 +31,7 @@ using System.Diagnostics;
 namespace AntiDupl.NET
 {
     /// <summary>
-    /// Панель которая включает в себя панель с просмотра изображеня и панель инструментов для работы с дефектными изображенями.
+    /// ГЏГ Г­ГҐГ«Гј ГЄГ®ГІГ®Г°Г Гї ГўГЄГ«ГѕГ·Г ГҐГІ Гў Г±ГҐГЎГї ГЇГ Г­ГҐГ«Гј Г± ГЇГ°Г®Г±Г¬Г®ГІГ°Г  ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­Гї ГЁ ГЇГ Г­ГҐГ«Гј ГЁГ­Г±ГІГ°ГіГ¬ГҐГ­ГІГ®Гў Г¤Г«Гї Г°Г ГЎГ®ГІГ» Г± Г¤ГҐГґГҐГЄГІГ­Г»Г¬ГЁ ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГїГ¬ГЁ.
     /// </summary>
     public class ResultsPreviewDefect : ResultsPreviewBase
     {
@@ -88,7 +88,7 @@ namespace AntiDupl.NET
 
         private void OnOptionsChanged()
         {
-            m_mistakeButton.Enabled = m_coreOptions.advancedOptions.mistakeDataBase;
+            m_mistakeButton.Enabled = m_coreOptions.advancedOptions.MistakeDataBase;
         }
 
         protected override void AddItems(ResultsOptions.ViewMode viewMode)

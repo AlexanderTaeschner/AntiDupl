@@ -189,9 +189,9 @@ namespace AntiDupl.NET
             CoreImageInfo info = m_group.images[m_index];
 
             m_fileSizeLabel.Text = info.GetFileSizeString();
-            m_imageSizeLabel.Text = string.Format("{0}×{1}", info.width, info.height);
-            m_imageTypeLabel.Text = (info.type == ImageType.None ? "   " : info.GetImageTypeString());
-            m_fileNameLabel.Text = Path.GetFileNameWithoutExtension(info.path);
+            m_imageSizeLabel.Text = string.Format("{0}×{1}", info.Width, info.Height);
+            m_imageTypeLabel.Text = (info.Type == ImageType.None ? "   " : info.GetImageTypeString());
+            m_fileNameLabel.Text = Path.GetFileNameWithoutExtension(info.Path);
 
             bool[] selected = m_core.GetSelection(m_group.id, (uint)m_index, 1);
             m_checkBox.Checked = selected[0];

@@ -1,4 +1,4 @@
-/*
+п»ї/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2015 Borisov Dmitry.
@@ -47,7 +47,7 @@ namespace AntiDupl.NET
 
         private RenameCurrentType m_renameCurrentType;
         /// <summary>
-        /// Переименовывать первую или вторую картинку.
+        /// ГЏГҐГ°ГҐГЁГ¬ГҐГ­Г®ГўГ»ГўГ ГІГј ГЇГҐГ°ГўГіГѕ ГЁГ«ГЁ ГўГІГ®Г°ГіГѕ ГЄГ Г°ГІГЁГ­ГЄГі.
         /// </summary>
         public RenameCurrentType RenameCurrentType {get{return m_renameCurrentType;}}
         
@@ -60,7 +60,7 @@ namespace AntiDupl.NET
 
         private int m_group;
         /// <summary>
-        /// Группа дубликатов.
+        /// ГѓГ°ГіГЇГЇГ  Г¤ГіГЎГ«ГЁГЄГ ГІГ®Гў.
         /// </summary>
         public int Group { get { return m_group; } }
         
@@ -88,7 +88,7 @@ namespace AntiDupl.NET
             SetPosition(position);
         }
         
-        // Запускается инициализация один раз при создание формы.
+        // Г‡Г ГЇГіГ±ГЄГ ГҐГІГ±Гї ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї Г®Г¤ГЁГ­ Г°Г Г§ ГЇГ°ГЁ Г±Г®Г§Г¤Г Г­ГЁГҐ ГґГ®Г°Г¬Г».
         private void InitializeComponents()
         {
             Strings s = Resources.Strings.Current;
@@ -165,23 +165,23 @@ namespace AntiDupl.NET
             m_toolTip.ShowAlways = true;
             m_toolTip.SetToolTip(m_imageBlocknessLabel, s.ResultsListView_Blockiness_Column_Text);
             m_toolTip.SetToolTip(m_imageBlurringLabel, s.ResultsListView_Blurring_Column_Text);
-            // Свойство AutomaticDelay позволяет установить одно значение задержки, которое затем используется для установки значений свойствAutoPopDelay, InitialDelay и ReshowDelay. Каждый раз при установке свойства AutomaticDelay устанавливаются следующие значения по умолчанию.
+            // Г‘ГўГ®Г©Г±ГІГўГ® AutomaticDelay ГЇГ®Г§ГўГ®Г«ГїГҐГІ ГіГ±ГІГ Г­Г®ГўГЁГІГј Г®Г¤Г­Г® Г§Г­Г Г·ГҐГ­ГЁГҐ Г§Г Г¤ГҐГ°Г¦ГЄГЁ, ГЄГ®ГІГ®Г°Г®ГҐ Г§Г ГІГҐГ¬ ГЁГ±ГЇГ®Г«ГјГ§ГіГҐГІГ±Гї Г¤Г«Гї ГіГ±ГІГ Г­Г®ГўГЄГЁ Г§Г­Г Г·ГҐГ­ГЁГ© Г±ГўГ®Г©Г±ГІГўAutoPopDelay, InitialDelay ГЁ ReshowDelay. ГЉГ Г¦Г¤Г»Г© Г°Г Г§ ГЇГ°ГЁ ГіГ±ГІГ Г­Г®ГўГЄГҐ Г±ГўГ®Г©Г±ГІГўГ  AutomaticDelay ГіГ±ГІГ Г­Г ГўГ«ГЁГўГ ГѕГІГ±Гї Г±Г«ГҐГ¤ГіГѕГ№ГЁГҐ Г§Г­Г Г·ГҐГ­ГЁГї ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ.
             //m_toolTip.AutomaticDelay = 500;
-            // Интервал времени, в миллисекундах, в течение которого указатель мыши должен оставаться в границах элемента управления, прежде чем появится окно всплывающей подсказки.
-            // Равно значению свойства AutomaticDelay. 
+            // Г€Г­ГІГҐГ°ГўГ Г« ГўГ°ГҐГ¬ГҐГ­ГЁ, Гў Г¬ГЁГ«Г«ГЁГ±ГҐГЄГіГ­Г¤Г Гµ, Гў ГІГҐГ·ГҐГ­ГЁГҐ ГЄГ®ГІГ®Г°Г®ГЈГ® ГіГЄГ Г§Г ГІГҐГ«Гј Г¬Г»ГёГЁ Г¤Г®Г«Г¦ГҐГ­ Г®Г±ГІГ ГўГ ГІГјГ±Гї Гў ГЈГ°Г Г­ГЁГ¶Г Гµ ГЅГ«ГҐГ¬ГҐГ­ГІГ  ГіГЇГ°Г ГўГ«ГҐГ­ГЁГї, ГЇГ°ГҐГ¦Г¤ГҐ Г·ГҐГ¬ ГЇГ®ГїГўГЁГІГ±Гї Г®ГЄГ­Г® ГўГ±ГЇГ«Г»ГўГ ГѕГ№ГҐГ© ГЇГ®Г¤Г±ГЄГ Г§ГЄГЁ.
+            // ГђГ ГўГ­Г® Г§Г­Г Г·ГҐГ­ГЁГѕ Г±ГўГ®Г©Г±ГІГўГ  AutomaticDelay. 
             m_toolTip.InitialDelay = 500;
-            // Получает или задает интервал времени, который должен пройти перед появлением окна очередной всплывающей подсказки при перемещении указателя мыши с одного элемента управления на другой.
-            // Одна пятая значения свойства AutomaticDelay. 
+            // ГЏГ®Г«ГіГ·Г ГҐГІ ГЁГ«ГЁ Г§Г Г¤Г ГҐГІ ГЁГ­ГІГҐГ°ГўГ Г« ГўГ°ГҐГ¬ГҐГ­ГЁ, ГЄГ®ГІГ®Г°Г»Г© Г¤Г®Г«Г¦ГҐГ­ ГЇГ°Г®Г©ГІГЁ ГЇГҐГ°ГҐГ¤ ГЇГ®ГїГўГ«ГҐГ­ГЁГҐГ¬ Г®ГЄГ­Г  Г®Г·ГҐГ°ГҐГ¤Г­Г®Г© ГўГ±ГЇГ«Г»ГўГ ГѕГ№ГҐГ© ГЇГ®Г¤Г±ГЄГ Г§ГЄГЁ ГЇГ°ГЁ ГЇГҐГ°ГҐГ¬ГҐГ№ГҐГ­ГЁГЁ ГіГЄГ Г§Г ГІГҐГ«Гї Г¬Г»ГёГЁ Г± Г®Г¤Г­Г®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  ГіГЇГ°Г ГўГ«ГҐГ­ГЁГї Г­Г  Г¤Г°ГіГЈГ®Г©.
+            // ГЋГ¤Г­Г  ГЇГїГІГ Гї Г§Г­Г Г·ГҐГ­ГЁГї Г±ГўГ®Г©Г±ГІГўГ  AutomaticDelay. 
             m_toolTip.ReshowDelay = 1;
-            // Период времени, в миллисекундах, ToolTip остается видимыми, когда указатель неподвижн на элементе управления. Значение по умолчанию - 5000. 
-            // В десять раз больше, чем значение свойства AutomaticDelay. 
+            // ГЏГҐГ°ГЁГ®Г¤ ГўГ°ГҐГ¬ГҐГ­ГЁ, Гў Г¬ГЁГ«Г«ГЁГ±ГҐГЄГіГ­Г¤Г Гµ, ToolTip Г®Г±ГІГ ГҐГІГ±Гї ГўГЁГ¤ГЁГ¬Г»Г¬ГЁ, ГЄГ®ГЈГ¤Г  ГіГЄГ Г§Г ГІГҐГ«Гј Г­ГҐГЇГ®Г¤ГўГЁГ¦Г­ Г­Г  ГЅГ«ГҐГ¬ГҐГ­ГІГҐ ГіГЇГ°Г ГўГ«ГҐГ­ГЁГї. Г‡Г­Г Г·ГҐГ­ГЁГҐ ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ - 5000. 
+            // Г‚ Г¤ГҐГ±ГїГІГј Г°Г Г§ ГЎГ®Г«ГјГёГҐ, Г·ГҐГ¬ Г§Г­Г Г·ГҐГ­ГЁГҐ Г±ГўГ®Г©Г±ГІГўГ  AutomaticDelay. 
             // you cannot set the AutoPopDelay time higher than an Int16.MaxValue (i.e. 32767) and have it working. Using the tooltip Show() method leads to the same result. Any value higher than 32767 leads the timer to be reset to 5000ms.
             m_toolTip.AutoPopDelay = Int16.MaxValue;
         }
 
         /// <summary>
         /// Set information in image panel.
-        /// Установка информации в панели изображения.
+        /// Г“Г±ГІГ Г­Г®ГўГЄГ  ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГЁ Гў ГЇГ Г­ГҐГ«ГЁ ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГї.
         /// </summary>
         private void SetImageInfo(CoreImageInfo currentImageInfo, CoreImageInfo neighbourImageInfo)
         {
@@ -206,66 +206,66 @@ namespace AntiDupl.NET
                 m_imageSizeLabel.Text = m_currentImageInfo.GetImageSizeString();
                 m_imageBlocknessLabel.Text = m_currentImageInfo.GetBlockinessString();
                 m_imageBlurringLabel.Text = m_currentImageInfo.GetBlurringString();
-                m_imageTypeLabel.Text = m_currentImageInfo.type == ImageType.None ? "   " : m_currentImageInfo.GetImageTypeString();
-                if (!currentImageInfo.exifInfo.isEmpty)
+                m_imageTypeLabel.Text = m_currentImageInfo.Type == ImageType.None ? "   " : m_currentImageInfo.GetImageTypeString();
+                if (!currentImageInfo.ExifInfo.isEmpty)
                 {
                     m_imageExifLabel.Visible = true;
                     SetExifTooltip(currentImageInfo);
                 }
                 else
                     m_imageExifLabel.Visible = false;
-                m_pathLabel.Text = m_currentImageInfo.path;
-                if (m_neighbourImageInfo != null) //подсветка highlight
+                m_pathLabel.Text = m_currentImageInfo.Path;
+                if (m_neighbourImageInfo != null) //ГЇГ®Г¤Г±ГўГҐГІГЄГ  highlight
                 {
                     m_imageSizeLabel.ForeColor =
-                            m_currentImageInfo.height * m_currentImageInfo.width < m_neighbourImageInfo.height * m_neighbourImageInfo.width ?
+                            m_currentImageInfo.Height * m_currentImageInfo.Width < m_neighbourImageInfo.Height * m_neighbourImageInfo.Width ?
                             Color.Red : TableLayoutPanel.DefaultForeColor;
-                    m_imageTypeLabel.ForeColor = m_currentImageInfo.type != m_neighbourImageInfo.type ?
+                    m_imageTypeLabel.ForeColor = m_currentImageInfo.Type != m_neighbourImageInfo.Type ?
                             Color.Red : TableLayoutPanel.DefaultForeColor;
-                    m_fileSizeLabel.ForeColor = m_currentImageInfo.size < m_neighbourImageInfo.size ?
+                    m_fileSizeLabel.ForeColor = m_currentImageInfo.Size < m_neighbourImageInfo.Size ?
                             Color.Red : TableLayoutPanel.DefaultForeColor;
-                    m_imageBlocknessLabel.ForeColor = m_currentImageInfo.blockiness > m_neighbourImageInfo.blockiness ?
+                    m_imageBlocknessLabel.ForeColor = m_currentImageInfo.Blockiness > m_neighbourImageInfo.Blockiness ?
                             Color.Red : TableLayoutPanel.DefaultForeColor;
-                    m_imageBlurringLabel.ForeColor = m_currentImageInfo.blurring > m_neighbourImageInfo.blurring ?
+                    m_imageBlurringLabel.ForeColor = m_currentImageInfo.Blurring > m_neighbourImageInfo.Blurring ?
                             Color.Red : TableLayoutPanel.DefaultForeColor;
-                    m_imageExifLabel.ForeColor = ExifEqual(m_currentImageInfo.exifInfo, m_neighbourImageInfo.exifInfo) ?
+                    m_imageExifLabel.ForeColor = ExifEqual(m_currentImageInfo.ExifInfo, m_neighbourImageInfo.ExifInfo) ?
                         TableLayoutPanel.DefaultForeColor : Color.Red;
                 }
             }
             else if (m_neighbourImageInfo != null)
             {
-                m_imageSizeLabel.ForeColor = m_currentImageInfo.height * m_currentImageInfo.width < m_neighbourImageInfo.height * m_neighbourImageInfo.width ?
+                m_imageSizeLabel.ForeColor = m_currentImageInfo.Height * m_currentImageInfo.Width < m_neighbourImageInfo.Height * m_neighbourImageInfo.Width ?
                         Color.Red : TableLayoutPanel.DefaultForeColor;
-                m_imageTypeLabel.ForeColor = m_currentImageInfo.type != m_neighbourImageInfo.type ?
+                m_imageTypeLabel.ForeColor = m_currentImageInfo.Type != m_neighbourImageInfo.Type ?
                         Color.Red : TableLayoutPanel.DefaultForeColor;
-                m_fileSizeLabel.ForeColor = m_currentImageInfo.size < m_neighbourImageInfo.size ?
+                m_fileSizeLabel.ForeColor = m_currentImageInfo.Size < m_neighbourImageInfo.Size ?
                         Color.Red : TableLayoutPanel.DefaultForeColor;
-                m_imageBlocknessLabel.ForeColor = m_currentImageInfo.blockiness > m_neighbourImageInfo.blockiness ?
+                m_imageBlocknessLabel.ForeColor = m_currentImageInfo.Blockiness > m_neighbourImageInfo.Blockiness ?
                         Color.Red : TableLayoutPanel.DefaultForeColor;
-                m_imageBlurringLabel.ForeColor = m_currentImageInfo.blurring > m_neighbourImageInfo.blurring ?
+                m_imageBlurringLabel.ForeColor = m_currentImageInfo.Blurring > m_neighbourImageInfo.Blurring ?
                         Color.Red : TableLayoutPanel.DefaultForeColor;
-                m_imageExifLabel.ForeColor = ExifEqual(m_currentImageInfo.exifInfo, m_neighbourImageInfo.exifInfo) ?
+                m_imageExifLabel.ForeColor = ExifEqual(m_currentImageInfo.ExifInfo, m_neighbourImageInfo.ExifInfo) ?
                     TableLayoutPanel.DefaultForeColor : Color.Red;
             }
             if (updateCurrent || updateNeighbour)
             {
                 Size neighbourSizeMax = new Size(0, 0);
                 if(m_neighbourImageInfo != null)
-                    neighbourSizeMax = new Size((int)m_neighbourImageInfo.width, (int)m_neighbourImageInfo.height);
+                    neighbourSizeMax = new Size((int)m_neighbourImageInfo.Width, (int)m_neighbourImageInfo.Height);
                 m_pictureBoxPanel.UpdateImagePadding(neighbourSizeMax);
                 Refresh();
             }
         }
 
         /// <summary>
-        /// Проверяет, нужно ли обновление текущей информации об изображении.
+        /// ГЏГ°Г®ГўГҐГ°ГїГҐГІ, Г­ГіГ¦Г­Г® Г«ГЁ Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ ГІГҐГЄГіГ№ГҐГ© ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГЁ Г®ГЎ ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГЁ.
         /// </summary>
         static private bool UpdateImageInfo(ref CoreImageInfo oldImageInfo, CoreImageInfo newImageInfo)
         {
             if (oldImageInfo == null || 
-                oldImageInfo.path.CompareTo(newImageInfo.path) != 0 ||
-                oldImageInfo.size != newImageInfo.size || 
-                oldImageInfo.time != newImageInfo.time)
+                oldImageInfo.Path.CompareTo(newImageInfo.Path) != 0 ||
+                oldImageInfo.Size != newImageInfo.Size || 
+                oldImageInfo.Time != newImageInfo.Time)
             {
                 oldImageInfo = newImageInfo;
                 return true;
@@ -302,7 +302,7 @@ namespace AntiDupl.NET
         
         /// <summary>
         /// Adding controls in panel
-        /// Добавление контролеров на панель
+        /// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЄГ®Г­ГІГ°Г®Г«ГҐГ°Г®Гў Г­Г  ГЇГ Г­ГҐГ«Гј
         /// </summary>
         public void SetPosition(Position position)
         {
@@ -396,7 +396,7 @@ namespace AntiDupl.NET
 
         public void RenameImage(object sender, EventArgs e)
         {
-            FileInfo fileInfo = new FileInfo(m_currentImageInfo.path);
+            FileInfo fileInfo = new FileInfo(m_currentImageInfo.Path);
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.FileName = fileInfo.FullName;
             dialog.OverwritePrompt = false;
@@ -415,7 +415,7 @@ namespace AntiDupl.NET
         private void OnRenameImageDialogFileOk(object sender, CancelEventArgs e)
         {
             SaveFileDialog dialog = (SaveFileDialog)sender;
-            FileInfo oldFileInfo = new FileInfo(m_currentImageInfo.path);
+            FileInfo oldFileInfo = new FileInfo(m_currentImageInfo.Path);
             FileInfo newFileInfo = new FileInfo(dialog.FileName);
             if (newFileInfo.FullName != oldFileInfo.FullName && newFileInfo.Exists)
             {
@@ -433,25 +433,25 @@ namespace AntiDupl.NET
         private List<string> GetExifList(CoreImageInfo currentImageInfo, Strings s)
         {
             List<string> exifList = new List<string>();
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.imageDescription))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_ImageDescription + currentImageInfo.exifInfo.imageDescription);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.equipMake))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipMake + currentImageInfo.exifInfo.equipMake);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.equipModel))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipModel + currentImageInfo.exifInfo.equipModel);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.softwareUsed))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_SoftwareUsed + currentImageInfo.exifInfo.softwareUsed);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.dateTime))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_DateTime + currentImageInfo.exifInfo.dateTime);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.artist))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_Artist + currentImageInfo.exifInfo.artist);
-            if (!String.IsNullOrEmpty(currentImageInfo.exifInfo.userComment))
-                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_UserComment + currentImageInfo.exifInfo.userComment);
+            if (!String.IsNullOrEmpty(currentImageInfo.ExifInfo.imageDescription))
+                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_ImageDescription + currentImageInfo.ExifInfo.imageDescription);
+            if (!String.IsNullOrEmpty(currentImageInfo.ExifInfo.equipMake))
+                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipMake + currentImageInfo.ExifInfo.equipMake);
+            if (!String.IsNullOrEmpty(currentImageInfo.ExifInfo.equipModel))
+                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_EquipModel + currentImageInfo.ExifInfo.equipModel);
+            if (!String.IsNullOrEmpty(currentImageInfo.ExifInfo.softwareUsed))
+                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_SoftwareUsed + currentImageInfo.ExifInfo.softwareUsed);
+            if (!String.IsNullOrEmpty(currentImageInfo.ExifInfo.dateTime))
+                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_DateTime + currentImageInfo.ExifInfo.dateTime);
+            if (!String.IsNullOrEmpty(currentImageInfo.ExifInfo.artist))
+                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_Artist + currentImageInfo.ExifInfo.artist);
+            if (!String.IsNullOrEmpty(currentImageInfo.ExifInfo.userComment))
+                exifList.Add(s.ImagePreviewPanel_EXIF_Tooltip_UserComment + currentImageInfo.ExifInfo.userComment);
             return exifList;
         }
 
         /// <summary>
-        /// Устанавливает значение подсказки tooltip для надписи EXIF.
+        /// Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГІ Г§Г­Г Г·ГҐГ­ГЁГҐ ГЇГ®Г¤Г±ГЄГ Г§ГЄГЁ tooltip Г¤Г«Гї Г­Г Г¤ГЇГЁГ±ГЁ EXIF.
         /// </summary>
         private void SetExifTooltip(CoreImageInfo currentImageInfo)
         {
@@ -474,7 +474,7 @@ namespace AntiDupl.NET
         }
 
         /// <summary>
-        /// Изменение подсказки EXIF при смене языка.
+        /// Г€Г§Г¬ГҐГ­ГҐГ­ГЁГҐ ГЇГ®Г¤Г±ГЄГ Г§ГЄГЁ EXIF ГЇГ°ГЁ Г±Г¬ГҐГ­ГҐ ГїГ§Г»ГЄГ .
         /// </summary>
         /// <param name="result"></param>
         public void UpdateExifTooltip(CoreResult result)
@@ -486,19 +486,19 @@ namespace AntiDupl.NET
             {
                 case Position.Left:
                 case Position.Top:
-                    if (!result.first.exifInfo.isEmpty)
+                    if (!result.first.ExifInfo.isEmpty)
                         SetExifTooltip(result.first);
                     break;
                 case Position.Right:
                 case Position.Bottom:
-                    if (!result.second.exifInfo.isEmpty)
+                    if (!result.second.ExifInfo.isEmpty)
                         SetExifTooltip(result.second);
                     break;
             }
         }
 
         /// <summary>
-        /// Проверка равны ли Exif.
+        /// ГЏГ°Г®ГўГҐГ°ГЄГ  Г°Г ГўГ­Г» Г«ГЁ Exif.
         /// </summary>
         private bool ExifEqual(ImageExif imageExif1, ImageExif imageExif2)
         {

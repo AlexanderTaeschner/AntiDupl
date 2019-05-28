@@ -48,8 +48,8 @@ namespace AntiDupl.NET
         {
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Version));
-                Version version = (Version)xmlSerializer.Deserialize(stream);
+                var xmlSerializer = new XmlSerializer(typeof(Version));
+                var version = (Version)xmlSerializer.Deserialize(stream);
                 return version;
             }
             catch
@@ -63,7 +63,7 @@ namespace AntiDupl.NET
             try
             {
                 TextWriter writer = new StreamWriter(fileName);
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Version));
+                var xmlSerializer = new XmlSerializer(typeof(Version));
                 xmlSerializer.Serialize(writer, this);
             }
             catch
@@ -73,7 +73,7 @@ namespace AntiDupl.NET
 
         public override string ToString()
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             builder.Append(major.ToString());
             builder.Append(".");
             builder.Append(minor.ToString());
@@ -103,7 +103,7 @@ namespace AntiDupl.NET
 
         static public bool Compatible(CoreVersion coreVersion)
         {
-            Version version = new Version();
+            var version = new Version();
             return
                 version.major == coreVersion.Major &&
                 version.minor == coreVersion.Minor &&

@@ -29,44 +29,44 @@ namespace AntiDupl.NET
 {
     public class CoreImageInfo
     {
-        public ulong id { get; }
-        public string path { get; }
-        public ulong size { get; }
-        public ulong time { get; }
-        public ImageType type { get; }
-        public uint width { get; }
-        public uint height { get; }
-        public double blockiness { get; }
-        public double blurring { get; }
-        public ImageExif exifInfo { get; }
+        public ulong Id { get; }
+        public string Path { get; }
+        public ulong Size { get; }
+        public ulong Time { get; }
+        public ImageType Type { get; }
+        public uint Width { get; }
+        public uint Height { get; }
+        public double Blockiness { get; }
+        public double Blurring { get; }
+        public ImageExif ExifInfo { get; }
 
         internal CoreImageInfo(ref CoreDll.adImageInfoW imageInfo)
         {
-            id = (ulong)imageInfo.id;
-            path = imageInfo.path;
-            size = imageInfo.size;
-            time = imageInfo.time;
-            type = imageInfo.type;
-            width = imageInfo.width;
-            height = imageInfo.height;
-            blockiness = imageInfo.blockiness;
-            blurring = imageInfo.blurring;
-            exifInfo = new ImageExif(ref imageInfo.exifInfo);
+            Id = (ulong)imageInfo.id;
+            Path = imageInfo.path;
+            Size = imageInfo.size;
+            Time = imageInfo.time;
+            Type = imageInfo.type;
+            Width = imageInfo.width;
+            Height = imageInfo.height;
+            Blockiness = imageInfo.blockiness;
+            Blurring = imageInfo.blurring;
+            ExifInfo = new ImageExif(ref imageInfo.exifInfo);
         }
 
         public string GetImageSizeString()
         {
-            StringBuilder builder = new StringBuilder();
-            builder.Append(width);
+            var builder = new StringBuilder();
+            builder.Append(Width);
             builder.Append(" x ");
-            builder.Append(height);
+            builder.Append(Height);
             return builder.ToString();
         }
 
         public string GetImageTypeString()
         {
-            StringBuilder builder = new StringBuilder();
-            switch (type)
+            var builder = new StringBuilder();
+            switch (Type)
             {
                 case ImageType.None:
                     builder.Append("");
@@ -113,24 +113,24 @@ namespace AntiDupl.NET
 
         public string GetBlockinessString()
         {
-            return blockiness.ToString("F2");
+            return Blockiness.ToString("F2");
         }
         
         public string GetBlurringString()
         {
-            return blurring.ToString("F2");
+            return Blurring.ToString("F2");
         }
 
         public string GetFileTimeString()
         {
-            return DateTime.FromFileTime((long)time).ToString();
+            return DateTime.FromFileTime((long)Time).ToString();
         }
 
         public string GetFileSizeString()
         {
-            StringBuilder builder = new StringBuilder();
-            string str = (Math.Ceiling(size / 1024.0)).ToString();
-            int start = str.Length % 3;
+            var builder = new StringBuilder();
+            var str = (Math.Ceiling(Size / 1024.0)).ToString();
+            var start = str.Length % 3;
             switch (start)
             {
                 case 0:
@@ -145,7 +145,7 @@ namespace AntiDupl.NET
                     builder.Append(" ");
                     break;
             }
-            for (int i = start; i < str.Length; i += 3)
+            for (var i = start; i < str.Length; i += 3)
             {
                 builder.Append(str[i + 0]);
                 builder.Append(str[i + 1]);
@@ -158,10 +158,10 @@ namespace AntiDupl.NET
 
         public string GetTipString()
         {
-            Strings s = Resources.Strings.Current;
-            StringBuilder builder = new StringBuilder();
+            var s = Resources.Strings.Current;
+            var builder = new StringBuilder();
 
-            builder.AppendLine(path);
+            builder.AppendLine(Path);
 
             builder.Append(s.ResultsListView_ImageSize_Column_Text);
             builder.Append(": ");
@@ -180,8 +180,8 @@ namespace AntiDupl.NET
 
         public string GetDirectoryString()
         {
-            int i = path.Length - 1;
-            while (i >= 0 && path[i] != '\\')
+            var i = Path.Length - 1;
+            while (i >= 0 && Path[i] != '\\')
             {
                 i--;
             }
@@ -192,13 +192,13 @@ namespace AntiDupl.NET
             }
             else
             {
-                return path.Substring(0, i);
+                return Path.Substring(0, i);
             }
         }
 
         public string GetFileNameWithoutExtensionString()
         {
-            return System.IO.Path.GetFileNameWithoutExtension(path);
+            return System.IO.Path.GetFileNameWithoutExtension(Path);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace AntiDupl.NET
     public class CoreGroup
     {
         public int id;
-        public CoreImageInfo[] images;
+        public CoreImageInfo[]? images;
 
         public Size sizeMax = new Size(0, 0);
 
@@ -39,10 +39,10 @@ namespace AntiDupl.NET
         {
             id = group.id.ToInt32();
             images = core.GetImageInfo(id, 0, (uint)group.size);
-            for (int i = 0; i < images.Length; ++i)
+            for (var i = 0; i < images.Length; ++i)
             {
-                sizeMax.Width = Math.Max(sizeMax.Width, (int)images[i].width);
-                sizeMax.Height = Math.Max(sizeMax.Height, (int)images[i].height);
+                sizeMax.Width = Math.Max(sizeMax.Width, (int)images[i].Width);
+                sizeMax.Height = Math.Max(sizeMax.Height, (int)images[i].Height);
             }
         }
     }

@@ -57,9 +57,9 @@ namespace AntiDupl.NET
             None = 0,
             Argb32 = 1,
         }
-        
-        //-----------API structures--------------------------------------------
 
+        //-----------API structures--------------------------------------------
+#pragma warning disable IDE1006 // Naming Styles
         [StructLayout(LayoutKind.Sequential)]
         public struct adSearchOptions
         {
@@ -378,5 +378,6 @@ namespace AntiDupl.NET
         public delegate Error adLoadBitmapW_fn(IntPtr handle, string fileName, IntPtr pBitmap);
         [DynamicModuleApi]
         public adLoadBitmapW_fn adLoadBitmapW = null;
+#pragma warning restore IDE1006 // Naming Styles
     }
 }

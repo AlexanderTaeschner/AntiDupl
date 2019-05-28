@@ -321,7 +321,7 @@ namespace AntiDupl.NET
 
         static private Strings Create()
         {
-            Strings strings = new Strings();
+            var strings = new Strings();
             CopyTo(strings);
             return strings;
         }
@@ -331,6 +331,6 @@ namespace AntiDupl.NET
             return m_strings;
         }
 
-        static private Strings m_strings = Create();
+        private static readonly Strings m_strings = Create();
     }
 }

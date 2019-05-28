@@ -29,17 +29,17 @@ namespace AntiDupl.NET
 {
     public class CoreCompareOptions
     {
-        public bool checkOnEquality { get; set; }
-        public bool transformedImage { get; set; }
-        public bool sizeControl { get; set; }
-        public bool typeControl { get; set; }
-        public bool ratioControl { get; set; }
-        public int thresholdDifference { get; set; }
-        public int minimalImageSize { get; set; }
-        public int maximalImageSize { get; set; }
-        public bool compareInsideOneFolder { get; set; }
-        public bool compareInsideOneSearchPath { get; set; }
-        public AlgorithmComparing algorithmComparing { get; set; }
+        public bool CheckOnEquality { get; set; }
+        public bool TransformedImage { get; set; }
+        public bool SizeControl { get; set; }
+        public bool TypeControl { get; set; }
+        public bool RatioControl { get; set; }
+        public int ThresholdDifference { get; set; }
+        public int MinimalImageSize { get; set; }
+        public int MaximalImageSize { get; set; }
+        public bool CompareInsideOneFolder { get; set; }
+        public bool CompareInsideOneSearchPath { get; set; }
+        public AlgorithmComparing AlgorithmComparing { get; set; }
 
         public CoreCompareOptions()
         {
@@ -47,47 +47,47 @@ namespace AntiDupl.NET
 
         public CoreCompareOptions(CoreCompareOptions compareOptions)
         {
-            checkOnEquality = compareOptions.checkOnEquality;
-            transformedImage = compareOptions.transformedImage;
-            sizeControl = compareOptions.sizeControl;
-            typeControl = compareOptions.typeControl;
-            ratioControl = compareOptions.ratioControl;
-			algorithmComparing = compareOptions.algorithmComparing;
-            thresholdDifference = compareOptions.thresholdDifference;
-            minimalImageSize = compareOptions.minimalImageSize;
-            maximalImageSize = compareOptions.maximalImageSize;
-            compareInsideOneFolder = compareOptions.compareInsideOneFolder;
-            compareInsideOneSearchPath = compareOptions.compareInsideOneSearchPath;
+            CheckOnEquality = compareOptions.CheckOnEquality;
+            TransformedImage = compareOptions.TransformedImage;
+            SizeControl = compareOptions.SizeControl;
+            TypeControl = compareOptions.TypeControl;
+            RatioControl = compareOptions.RatioControl;
+			AlgorithmComparing = compareOptions.AlgorithmComparing;
+            ThresholdDifference = compareOptions.ThresholdDifference;
+            MinimalImageSize = compareOptions.MinimalImageSize;
+            MaximalImageSize = compareOptions.MaximalImageSize;
+            CompareInsideOneFolder = compareOptions.CompareInsideOneFolder;
+            CompareInsideOneSearchPath = compareOptions.CompareInsideOneSearchPath;
         }
 
         internal CoreCompareOptions(ref CoreDll.adCompareOptions compareOptions)
         {
-            checkOnEquality = compareOptions.checkOnEquality != CoreDll.FALSE;
-            transformedImage = compareOptions.transformedImage != CoreDll.FALSE;
-            sizeControl = compareOptions.sizeControl != CoreDll.FALSE;
-            typeControl = compareOptions.typeControl != CoreDll.FALSE;
-            ratioControl = compareOptions.ratioControl != CoreDll.FALSE;
-			algorithmComparing = compareOptions.algorithmComparing;
-            thresholdDifference = compareOptions.thresholdDifference;
-            minimalImageSize = compareOptions.minimalImageSize;
-            maximalImageSize = compareOptions.maximalImageSize;
-            compareInsideOneFolder = compareOptions.compareInsideOneFolder != CoreDll.FALSE;
-            compareInsideOneSearchPath = compareOptions.compareInsideOneSearchPath != CoreDll.FALSE;
+            CheckOnEquality = compareOptions.checkOnEquality != CoreDll.FALSE;
+            TransformedImage = compareOptions.transformedImage != CoreDll.FALSE;
+            SizeControl = compareOptions.sizeControl != CoreDll.FALSE;
+            TypeControl = compareOptions.typeControl != CoreDll.FALSE;
+            RatioControl = compareOptions.ratioControl != CoreDll.FALSE;
+			AlgorithmComparing = compareOptions.algorithmComparing;
+            ThresholdDifference = compareOptions.thresholdDifference;
+            MinimalImageSize = compareOptions.minimalImageSize;
+            MaximalImageSize = compareOptions.maximalImageSize;
+            CompareInsideOneFolder = compareOptions.compareInsideOneFolder != CoreDll.FALSE;
+            CompareInsideOneSearchPath = compareOptions.compareInsideOneSearchPath != CoreDll.FALSE;
         }
 
         internal void ConvertTo(ref CoreDll.adCompareOptions compareOptions)
         {
-            compareOptions.checkOnEquality = checkOnEquality ? CoreDll.TRUE : CoreDll.FALSE;
-            compareOptions.transformedImage = transformedImage ? CoreDll.TRUE : CoreDll.FALSE;
-            compareOptions.sizeControl = sizeControl ? CoreDll.TRUE : CoreDll.FALSE;
-            compareOptions.typeControl = typeControl ? CoreDll.TRUE : CoreDll.FALSE;
-            compareOptions.ratioControl = ratioControl ? CoreDll.TRUE : CoreDll.FALSE;
-			compareOptions.algorithmComparing = algorithmComparing;
-            compareOptions.thresholdDifference = thresholdDifference;
-            compareOptions.minimalImageSize = minimalImageSize;
-            compareOptions.maximalImageSize = maximalImageSize;
-            compareOptions.compareInsideOneFolder = compareInsideOneFolder ? CoreDll.TRUE : CoreDll.FALSE;
-            compareOptions.compareInsideOneSearchPath = compareInsideOneSearchPath ? CoreDll.TRUE : CoreDll.FALSE;
+            compareOptions.checkOnEquality = CheckOnEquality ? CoreDll.TRUE : CoreDll.FALSE;
+            compareOptions.transformedImage = TransformedImage ? CoreDll.TRUE : CoreDll.FALSE;
+            compareOptions.sizeControl = SizeControl ? CoreDll.TRUE : CoreDll.FALSE;
+            compareOptions.typeControl = TypeControl ? CoreDll.TRUE : CoreDll.FALSE;
+            compareOptions.ratioControl = RatioControl ? CoreDll.TRUE : CoreDll.FALSE;
+			compareOptions.algorithmComparing = AlgorithmComparing;
+            compareOptions.thresholdDifference = ThresholdDifference;
+            compareOptions.minimalImageSize = MinimalImageSize;
+            compareOptions.maximalImageSize = MaximalImageSize;
+            compareOptions.compareInsideOneFolder = CompareInsideOneFolder ? CoreDll.TRUE : CoreDll.FALSE;
+            compareOptions.compareInsideOneSearchPath = CompareInsideOneSearchPath ? CoreDll.TRUE : CoreDll.FALSE;
         }
 
         public CoreCompareOptions Clone()
@@ -98,17 +98,17 @@ namespace AntiDupl.NET
         public bool Equals(CoreCompareOptions compareOptions)
         {
             return
-                checkOnEquality == compareOptions.checkOnEquality &&
-                transformedImage == compareOptions.transformedImage &&
-                sizeControl == compareOptions.sizeControl &&
-                typeControl == compareOptions.typeControl &&
-                ratioControl == compareOptions.ratioControl &&
-				algorithmComparing == compareOptions.algorithmComparing &&
-                thresholdDifference == compareOptions.thresholdDifference &&
-                minimalImageSize == compareOptions.minimalImageSize &&
-                maximalImageSize == compareOptions.maximalImageSize &&
-                compareInsideOneFolder == compareOptions.compareInsideOneFolder &&
-                compareInsideOneSearchPath == compareOptions.compareInsideOneSearchPath;
+                CheckOnEquality == compareOptions.CheckOnEquality &&
+                TransformedImage == compareOptions.TransformedImage &&
+                SizeControl == compareOptions.SizeControl &&
+                TypeControl == compareOptions.TypeControl &&
+                RatioControl == compareOptions.RatioControl &&
+				AlgorithmComparing == compareOptions.AlgorithmComparing &&
+                ThresholdDifference == compareOptions.ThresholdDifference &&
+                MinimalImageSize == compareOptions.MinimalImageSize &&
+                MaximalImageSize == compareOptions.MaximalImageSize &&
+                CompareInsideOneFolder == compareOptions.CompareInsideOneFolder &&
+                CompareInsideOneSearchPath == compareOptions.CompareInsideOneSearchPath;
         }
     }
 }

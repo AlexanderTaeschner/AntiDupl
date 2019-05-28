@@ -86,7 +86,7 @@ namespace AntiDupl.NET
             {
                 if(m_canOpenFolderWithExplorer)
                 {
-                    Process.Start("explorer.exe", string.Format("/e, /select, \"{0}\"", imageInfo.path));
+                    Process.Start("explorer.exe", string.Format("/e, /select, \"{0}\"", imageInfo.Path));
                 }
                 else
                 {

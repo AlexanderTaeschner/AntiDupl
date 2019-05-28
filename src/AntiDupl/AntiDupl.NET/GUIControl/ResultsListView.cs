@@ -1,4 +1,4 @@
-/*
+п»ї/*
 * AntiDupl.NET Program (http://ermig1979.github.io/AntiDupl).
 *
 * Copyright (c) 2002-2018 Yermalayeu Ihar, 2013-2015 Borisov Dmitry.
@@ -33,7 +33,7 @@ namespace AntiDupl.NET
 {
     /// <summary>
     /// Class output result in ListView.
-    /// Класс вывода результатов в ListView.
+    /// ГЉГ«Г Г±Г± ГўГ»ГўГ®Г¤Г  Г°ГҐГ§ГіГ«ГјГІГ ГІГ®Гў Гў ListView.
     /// </summary>
     public class ResultsListView : DataGridView
     {
@@ -251,10 +251,10 @@ namespace AntiDupl.NET
         }
 
         /// <summary>
-        /// Меняет путь у текущей картинки на заданный.
+        /// ГЊГҐГ­ГїГҐГІ ГЇГіГІГј Гі ГІГҐГЄГіГ№ГҐГ© ГЄГ Г°ГІГЁГ­ГЄГЁ Г­Г  Г§Г Г¤Г Г­Г­Г»Г©.
         /// </summary>
         /// <param name="renameCurrentType"></param>
-        /// <param name="newFileName">Новый путь</param>
+        /// <param name="newFileName">ГЌГ®ГўГ»Г© ГЇГіГІГј</param>
         public void RenameCurrent(RenameCurrentType renameCurrentType, string newFileName)
         {
             m_makeAction = true;
@@ -264,7 +264,7 @@ namespace AntiDupl.NET
         }
 
         /// <summary>
-        /// Перенести текущую группу в папку.
+        /// ГЏГҐГ°ГҐГ­ГҐГ±ГІГЁ ГІГҐГЄГіГ№ГіГѕ ГЈГ°ГіГЇГЇГі Гў ГЇГ ГЇГЄГі.
         /// </summary>
         /// <param name="directory"></param>
         public void MoveCurrentGroupToDirectory(string directory)
@@ -891,9 +891,9 @@ namespace AntiDupl.NET
                     DataGridViewCustomRow row = (DataGridViewCustomRow)Rows[i];
                     if (row.selected)
                     {
-                        if (String.IsNullOrEmpty(m_results[i].second.path))
+                        if (String.IsNullOrEmpty(m_results[i].second.Path))
                             return false;
-                        if (!Path.GetDirectoryName(m_results[i].first.path).Equals(Path.GetDirectoryName(m_results[i].second.path)))
+                        if (!Path.GetDirectoryName(m_results[i].first.Path).Equals(Path.GetDirectoryName(m_results[i].second.Path)))
                         {
                             moveEnable = true;
                             break;

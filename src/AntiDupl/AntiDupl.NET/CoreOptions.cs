@@ -273,7 +273,7 @@ namespace AntiDupl.NET
 
         public string GetImageDataBasePath()
         {
-            string directory = string.Format("{0}\\images\\{1}x{1}", Resources.UserPath, advancedOptions.reducedImageSize);
+            string directory = string.Format("{0}\\images\\{1}x{1}", Resources.UserPath, advancedOptions.ReducedImageSize);
             DirectoryInfo directoryInfo = new DirectoryInfo(directory);
             if (!directoryInfo.Exists)
                 directoryInfo.Create();

@@ -1,0 +1,254 @@
+﻿###############################
+# Core EditorConfig Options   #
+###############################
+
+root = true
+
+[*]
+indent_style = space
+
+[*.cs]
+charset = utf-8-bom
+end_of_line = crlf
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+#Style
+
+#Style - qualification options
+
+#prefer fields not to be prefaced with this. or Me. in Visual Basic
+dotnet_style_qualification_for_field = false:suggestion
+#prefer methods not to be prefaced with this. or Me. in Visual Basic
+dotnet_style_qualification_for_method = false:suggestion
+#prefer properties not to be prefaced with this. or Me. in Visual Basic
+dotnet_style_qualification_for_property = false:suggestion
+#prefer events not to be prefaced with this. or Me. in Visual Basic
+dotnet_style_qualification_for_event = false:suggestion
+
+#Style - language keyword and framework type options
+
+#prefer the language keyword for local variables, method parameters, and class members, instead of the type name, for types that have a keyword to represent them
+dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
+#prefer the language keyword for member access expressions, instead of the type name, for types that have a keyword to represent them
+dotnet_style_predefined_type_for_member_access = true:suggestion
+
+#Style - modifier preferences
+
+#prefer accessibility modifiers to bes specified
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:suggestion
+#prefer the specified ordering of modifiers
+csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:suggestion
+#prefer that fields should be marked with readonly (C#) or ReadOnly (Visual Basic) if they are only ever assigned inline, or inside of a constructor
+dotnet_style_readonly_field = true:suggestion
+
+#Style - parentheses preferences
+
+#prefer parentheses to clarify arithmetic operator (*, /, %, +, -, <<, >>, &, ^, |) precedence
+dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:suggestion
+#prefer parentheses to clarify relational operator (>, <, <=, >=, is, as, ==, !=) precedence
+dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity:suggestion
+#prefer parentheses to clarify other binary operator (&&, ||, ??) precedence
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:suggestion
+#prefer parentheses to clarify operator precedence
+dotnet_style_parentheses_in_other_operators = never_if_unnecessary:suggestion
+
+#Style - expression-level preferences
+
+#prefer objects to be initialized using object initializers when possible
+dotnet_style_object_initializer = true:suggestion
+#prefer collections to be initialized using collection initializers when possible
+dotnet_style_collection_initializer = true:suggestion
+#prefer tuple names to ItemX properties
+dotnet_style_explicit_tuple_names = true:suggestion
+#prefer inferred tuple element names
+dotnet_style_prefer_inferred_tuple_names = true:suggestion
+#prefer inferred anonymous type member names
+dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
+#prefer autoproperties over properties with private backing fields
+dotnet_style_prefer_auto_properties = true:suggestion
+#prefer using a null check with pattern-matching over object.ReferenceEquals
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
+#prefer assignments with a ternary conditional over an if-else statement
+dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion
+#prefer return statements to use a ternary conditional over an if-else statement
+dotnet_style_prefer_conditional_expression_over_return = true:suggestion
+
+#Style - null-checking preferences
+
+#prefer null coalescing expressions to ternary operator checking
+dotnet_style_coalesce_expression = true:suggestion
+#prefer to use null-conditional operator when possible
+dotnet_style_null_propagation = true:suggestion
+
+#Style - C# code style settings
+
+#Style - implicit and explicit types
+
+#prefer var is used to declare variables with built-in system types such as int
+csharp_style_var_for_built_in_types = true:suggestion
+#prefer var when the type is already mentioned on the right-hand side of a declaration expression
+csharp_style_var_when_type_is_apparent = true:suggestion
+#prefer var over explicit type in all cases, unless overridden by another code style rule
+csharp_style_var_elsewhere = true:suggestion
+
+#Style - expression bodied member options
+
+#prefer expression-bodied members for methods
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+#prefer expression-bodied members for constructors
+csharp_style_expression_bodied_constructors = when_on_single_line:suggestion
+#prefer expression-bodied members for operators
+csharp_style_expression_bodied_operators = when_on_single_line:suggestion
+#prefer expression-bodied members for properties
+csharp_style_expression_bodied_properties = when_on_single_line:suggestion
+#prefer expression-bodied members for indexers
+csharp_style_expression_bodied_indexers = when_on_single_line:suggestion
+#prefer expression-bodied members for accessors
+csharp_style_expression_bodied_accessors = when_on_single_line:suggestion
+
+#Style - pattern matching
+
+#prefer pattern matching instead of is expressions with type casts
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+#prefer pattern matching instead of as expressions with null checks to determine if something is of a particular type
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+
+#Style - inlined variable declarations
+
+#prefer out variables to be declared inline in the argument list of a method call when possible
+csharp_style_inlined_variable_declaration = true:suggestion
+
+#Style - expression-level preferences
+
+#prefer default over default(T)
+csharp_prefer_simple_default_expression = true:suggestion
+#prefer deconstructed variable declaration
+csharp_style_deconstructed_variable_declaration = true:suggestion
+#prefer local functions over anonymous functions
+csharp_style_pattern_local_over_anonymous_function = true:suggestion
+
+#Style - null checking preferences
+
+#prefer to use throw expressions instead of throw statements
+csharp_style_throw_expression = true:suggestion
+#prefer to use the conditional coalescing operator (?.) when invoking a lambda expression, instead of performing a null check
+csharp_style_conditional_delegate_call = true:suggestion
+
+#Style - code block preferences
+
+#prefer curly braces even for one line of code
+csharp_prefer_braces = true:suggestion
+
+
+#Formatting conventions
+
+#Formatting - organize using options
+
+#sort System.* using directives alphabetically, and place them before other usings
+dotnet_sort_system_directives_first = true
+#place a blank line between using directive groups
+dotnet_separate_import_directive_groups = false
+
+#Formatting - new line options
+
+#require braces to be on a new line for all expressions ("Allman" style)
+csharp_new_line_before_open_brace = all
+#place else statements on a new line
+csharp_new_line_before_else = true
+#place catch statements on a new line
+csharp_new_line_before_catch = true
+#require finally statements to be on a new line after the closing brace
+csharp_new_line_before_finally = true
+#require members of object initializers to be on separate lines
+csharp_new_line_before_members_in_object_initializers = true
+#require members of anonymous types to be on separate lines
+csharp_new_line_before_members_in_anonymous_types = true
+#require elements of query expression clauses to be on separate lines
+csharp_new_line_between_query_expression_clauses = true
+
+#Formatting - indentation options
+
+#indent switch case contents.
+csharp_indent_case_contents = true
+#indent switch labels
+csharp_indent_switch_labels = true
+#label positioning
+csharp_indent_labels = flush_left
+
+#Formatting - spacing options
+
+#require NO space between a cast and the value
+csharp_space_after_cast = false
+#require a space after a keyword in a control flow statement such as a for loop
+csharp_space_after_keywords_in_control_flow_statements = true
+#place a space character after the opening parenthesis and before the closing parenthesis of a method declaration parameter list.
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+#do not place space characters after the opening parenthesis and before the closing parenthesis of a method call
+csharp_space_between_method_call_parameter_list_parentheses = false
+#disable space requirement between parantheses for other options
+csharp_space_between_parentheses = false
+#require a space before the colon for bases or interfaces in a type declaration
+csharp_space_before_colon_in_inheritance_clause = true
+#require a space before the colon for bases or interfaces in a type declaration
+csharp_space_after_colon_in_inheritance_clause = true
+#insert space before and after the binary operator
+csharp_space_around_binary_operators = before_and_after
+#remove space within empty argument list parentheses
+csharp_space_between_method_call_empty_parameter_list_parentheses = false
+#remove space between method call name and opening parenthesis
+csharp_space_between_method_call_name_and_opening_parenthesis = false
+#remove space within empty parameter list parentheses for a method declaration
+csharp_space_between_method_declaration_empty_parameter_list_parentheses = false
+
+#Formatting - wrapping options
+
+#leave statements and member declarations on different lines
+csharp_preserve_single_line_statements = false
+#leave code block on single line
+csharp_preserve_single_line_blocks = true
+
+#Naming rules
+# interfaces must be pascal cased and prefixed with I
+dotnet_naming_rule.interfaces_must_be_pascal_cased_and_prefixed_with_I.severity = suggestion
+dotnet_naming_rule.interfaces_must_be_pascal_cased_and_prefixed_with_I.symbols  = interface_symbols
+dotnet_naming_rule.interfaces_must_be_pascal_cased_and_prefixed_with_I.style    = pascal_case_and_prefix_with_I_style
+
+dotnet_naming_symbols.interface_symbols.applicable_kinds           = interface
+dotnet_naming_symbols.interface_symbols.applicable_accessibilities = *
+
+dotnet_naming_style.pascal_case_and_prefix_with_I_style.required_prefix = I
+dotnet_naming_style.pascal_case_and_prefix_with_I_style.capitalization = pascal_case
+
+# name all constant fields using PascalCase
+dotnet_naming_rule.constant_fields_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.constant_fields_should_be_pascal_case.symbols  = constant_fields
+dotnet_naming_rule.constant_fields_should_be_pascal_case.style    = pascal_case_style
+
+dotnet_naming_symbols.constant_fields.applicable_kinds   = field
+dotnet_naming_symbols.constant_fields.required_modifiers = const
+
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
+# static fields should have s_ prefix
+dotnet_naming_rule.static_fields_should_have_prefix.severity = suggestion
+dotnet_naming_rule.static_fields_should_have_prefix.symbols  = static_fields
+dotnet_naming_rule.static_fields_should_have_prefix.style    = static_prefix_style
+
+dotnet_naming_symbols.static_fields.applicable_kinds   = field
+dotnet_naming_symbols.static_fields.required_modifiers = static
+
+dotnet_naming_style.static_prefix_style.required_prefix = s_
+dotnet_naming_style.static_prefix_style.capitalization = camel_case
+
+# internal and private fields should be _camelCase
+dotnet_naming_rule.camel_case_for_private_internal_fields.severity = suggestion
+dotnet_naming_rule.camel_case_for_private_internal_fields.symbols  = private_internal_fields
+dotnet_naming_rule.camel_case_for_private_internal_fields.style    = camel_case_underscore_style
+
+dotnet_naming_symbols.private_internal_fields.applicable_kinds = field
+dotnet_naming_symbols.private_internal_fields.applicable_accessibilities = private, internal
+
+dotnet_naming_style.camel_case_underscore_style.required_prefix = _
+dotnet_naming_style.camel_case_underscore_style.capitalization = camel_case
